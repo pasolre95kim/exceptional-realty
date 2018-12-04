@@ -2,17 +2,18 @@ import React from 'react'
 import VenueForm from './VenueForm'
 
 
-const accountsUrl = "http://localhost:3000/accounts"
+const accountsUrl = "http://localhost:3000/proposes/"
+
 export default class VenueCard extends React.Component {
+
   constructor(props) {
     super(props)
-
     let id = this.props.accountId
     let cake = this.props.venue.proposeData ? this.props.venue.proposeData.cake : ''
     let theme = this.props.venue.proposeData ? this.props.venue.proposeData.theme : ''
     let flower = this.props.venue.proposeData ? this.props.venue.proposeData.flower : ''
 
-    this.state={
+    this.state = {
       showform: false,
         cake: cake,
         theme: theme,
@@ -21,28 +22,8 @@ export default class VenueCard extends React.Component {
     }
   }
 
-
   handleClick = event => {
     this.setState({form: !this.state.form})
-  }
-
-  handleSubmit = event => {
-    event.preventDefault()
-
-    let data = {
-      cake: this.state.cake,
-      theme: this.state.theme,
-      flower: this.state.flower
-    }
-  fetch(accountsUrl+`/${this.state.id}`,{
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  })
-  .then(resp => resp.json())
-  .then(data => console.log(data))
   }
 
   handleChange = event => {
@@ -52,6 +33,23 @@ export default class VenueCard extends React.Component {
     })
   }
 
+  handleSubmit = event => {
+    event.preventDefault()
+      let data = {
+        cake: this.state.cake,
+        theme: this.state.theme,
+        flower: this.state.flower
+      }
+  fetch(accountsUrl+`${this.props.venue.proposeData.id}`,{
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  .then(resp => resp.json())
+  .then(data => console.log(data))
+  }
 
   render(){
   return(
@@ -79,6 +77,7 @@ export default class VenueCard extends React.Component {
           <i aria-hidden='true' className='edit icon' />
           Propose
         </a>
+
         {this.state.form ? <VenueForm venue={this.props.venue}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
