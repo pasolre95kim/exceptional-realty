@@ -9,6 +9,7 @@ import {Route, Link, Switch} from 'react-router-dom'
 const venuesUrl = "http://localhost:3000/venues"
 const accountsUrl = "http://localhost:3000/accounts"
 const proposeUrl = "http://localhost:3000/proposes"
+const image ="https://d1zpvjny0s6omk.cloudfront.net/media/cache/82/36/82364d1a9e525753e30d553e26005ec1.jpg"
 
 class App extends Component {
   constructor(){
@@ -97,6 +98,7 @@ class App extends Component {
           <img src='https://cdn.dribbble.com/users/290832/screenshots/982749/richwilliams_wedding_logo.jpg'
             className='ui circular image' /> My Wedding
         </h3>
+
         <div className='ui menu'>
           <div className='header item'>My Wedding</div>
           <Link to='/' className="item">Home</Link>
@@ -124,9 +126,10 @@ class App extends Component {
                     />
                 }} />
 
-
           </Switch>
-      </div>
+        </div>
+
+
     );
   }
 }

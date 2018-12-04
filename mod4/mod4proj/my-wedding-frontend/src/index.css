@@ -12,3 +12,8 @@ h2{
 #faq {
   text-align: center;
 }
+
+#background{
+  width: 100%;
+  height: 200px
+}
