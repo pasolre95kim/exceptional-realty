@@ -67,12 +67,14 @@ class App extends Component {
       body: JSON.stringify(data)
     })
     .then(resp => resp.json())
-    .then(data => this.setState({
-      myVenues: [...this.state.myVenues, data]
-    }))
+    .then(data => {
+      data.venue.proposeData = {id:data.id, cake:data.cake, theme:data.theme, flower:data.flower }
+    this.setState({
+      myVenues: [...this.state.myVenues, data.venue]
+    })})
+  
+    }
   }
-
-}
 
   removeVenue = (venueRemove) => {
     let index = this.state.myVenues.findIndex(venue => venue.id === venueRemove.id)

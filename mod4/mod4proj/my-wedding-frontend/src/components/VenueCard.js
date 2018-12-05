@@ -40,6 +40,8 @@ export default class VenueCard extends React.Component {
         theme: this.state.theme,
         flower: this.state.flower
       }
+      console.log(this.props)
+      console.log(this.props.venue)
   fetch(accountsUrl+`${this.props.venue.proposeData.id}`,{
     method: "PATCH",
     headers: {
