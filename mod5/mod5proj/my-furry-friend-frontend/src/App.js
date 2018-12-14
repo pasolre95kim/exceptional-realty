@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import allAnimals from './components/allAnimals'
+import adoptedAnimals from './components/adoptedAnimals'
 
 
 
@@ -30,11 +31,22 @@ class App extends Component {
     }))
   }
 
+  adoptAnimal = (animal) => {
+    if (this.state.adoptedAnimals.inclues(animal)) {
+      return null
+    } else {
+        this.setState({
+          adoptedAnimals: [...this.state.adoptedAnimals, animal]
+        })
+      }
+    }
+
+
+
 
 
   render() {
     return (
-
       <div className="App">
 
       <h2 class="ui header">
@@ -62,11 +74,12 @@ class App extends Component {
         </div>
         </div>
 
-        
-        <allAnimals allAnimals={this.state.allAnimals}/>
+    <allAnimals allAnimals={this.state.allAnimals}/>
+    <adoptedAnimals adoptAnimal={this.adoptAnimal}
+      adoptedAnimals={this.state.adoptedAnimals} />
 
 
-      </div>
+    </div>
     );
   }
 }
