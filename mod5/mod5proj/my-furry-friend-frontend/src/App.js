@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-
-
-
+import React, { Component, Fragment } from 'react';
+import allAnimals from './components/allAnimals'
 
 
 
@@ -15,6 +13,7 @@ class App extends Component {
     this.state={
       allAnimals:[],
       adoptedAnimals: [],
+      searchTerm: "",
       user: {
         username: "Admin",
         email: "admin@email.com"
@@ -35,7 +34,37 @@ class App extends Component {
 
   render() {
     return (
+
       <div className="App">
+
+      <h2 class="ui header">
+        <img src="https://i.etsystatic.com/14984992/r/il/2120fc/1560256262/il_570xN.1560256262_eaom.jpg" class="ui circular image"/>
+        My Furry Friends
+        <div class="sub header">
+         Life long friends
+        </div>
+      </h2>
+
+      <div class="ui secondary menu">
+        <a class="active item">Home</a>
+        <a class="item">Adopt</a>
+        <a class="item">Resources</a>
+      <div class="right menu">
+        <div class="item">
+          <div class="ui icon input">
+        <input type="text" placeholder="Search..."/>
+        <i aria-hidden="true" class="search icon"></i>
+        </div>
+      </div>
+      <a className="item">
+        Sign In
+      </a>
+        </div>
+        </div>
+
+        
+        <allAnimals allAnimals={this.state.allAnimals}/>
+
 
       </div>
     );
