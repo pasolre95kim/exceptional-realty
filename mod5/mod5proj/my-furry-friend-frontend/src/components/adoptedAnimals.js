@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import { Button, Header, Icon, Modal } from 'semantic-ui-react'
+import AnimalCard from './AnimalCard'
 
-class adoptedAnimals extends Component {
+class AdoptedAnimals extends Component {
   constructor(){
     super()
     this.state={
@@ -10,16 +10,11 @@ class adoptedAnimals extends Component {
   }
 
 
-  handleOpen = () => this.setState({ modalOpen: true })
-
-  handleClose = () => this.setState({ modalOpen: false })
-
-
 
   render() {
     return (
       <div className = "ui three column grid cards">
-      {this.props.adoptedAnimals.map(animal => <animalCard
+      {this.props.adoptedAnimals.map(animal => <AnimalCard
         key={animal.id}
         animal = {animal}
         handleOpen={this.handleOpen}
@@ -30,4 +25,4 @@ class adoptedAnimals extends Component {
   }
 }
 
-export default adoptedAnimals
+export default AdoptedAnimals

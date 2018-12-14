@@ -1,35 +1,20 @@
 import React from 'react'
+import AnimalCard from './AnimalCard'
 
-const allAnimals = (props) => {
+const AllAnimals = (props) => {
 
   return(
     <div>
     <h2>Our Furry Friends</h2>
       <div className = "ui four column grid cards">
-        {props.allAnimals.map(animal=> <animalCard
+        {props.allAnimals.map(animal=> <AnimalCard
           key={animal.id}
           animal={animal}
+          user={props.user}
           />
       )}
     </div>
     </div>
   )
 }
-export default allAnimals
-
-// onClick={props.addToAdopt}
-
-// return(
-//     <div>
-//     <h2>Venues</h2>
-//     <div className="ui three column grid cards">
-//       {props.venueList.map(venue => <VenueCard
-//         key={venue.id}
-//         venue={venue}
-//         onClick={props.addToMyVenue}
-//         favorite={false}
-//       />
-//     )}
-//     </div>
-//     </div>
-//   )
+export default AllAnimals

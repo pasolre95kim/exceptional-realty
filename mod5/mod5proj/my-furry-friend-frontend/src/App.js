@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import allAnimals from './components/allAnimals'
-import adoptedAnimals from './components/adoptedAnimals'
-
+import AllAnimals from './components/AllAnimals'
+import AdoptedAnimals from './components/AdoptedAnimals'
+import {Route, Link, Switch} from 'react-router-dom'
 
 
 const animalsURL = "http://localhost:3000/animals"
@@ -16,8 +16,11 @@ class App extends Component {
       adoptedAnimals: [],
       searchTerm: "",
       user: {
+        firstname: "Michelle",
+        lastname: "Kim",
         username: "Admin",
-        email: "admin@email.com"
+        email: "admin@email.com",
+        phone_number: "012-345-6789"
       }
     }
   }
@@ -26,9 +29,10 @@ class App extends Component {
     fetch(animalsURL)
     .then(resp => resp.json())
     .then(animals =>
-    this.setState({
-      allAnimals: animals
-    }))
+      this.setState({
+          allAnimals: animals
+        })
+    )
   }
 
   adoptAnimal = (animal) => {
@@ -41,31 +45,32 @@ class App extends Component {
       }
     }
 
-
-
+  handleChange = () => {
+    
+  }
 
 
   render() {
     return (
       <div className="App">
 
-      <h2 class="ui header">
-        <img src="https://i.etsystatic.com/14984992/r/il/2120fc/1560256262/il_570xN.1560256262_eaom.jpg" class="ui circular image"/>
+      <h2 className="ui header">
+        <img src="https://i.etsystatic.com/14984992/r/il/2120fc/1560256262/il_570xN.1560256262_eaom.jpg" className="ui circular image"/>
         My Furry Friends
-        <div class="sub header">
-         Life long friends
+        <div className="sub header">
+         Your Life long friends
         </div>
       </h2>
 
-      <div class="ui secondary menu">
-        <a class="active item">Home</a>
-        <a class="item">Adopt</a>
-        <a class="item">Resources</a>
-      <div class="right menu">
-        <div class="item">
-          <div class="ui icon input">
+      <div className="ui secondary menu">
+        <a className="active item">Home</a>
+        <a className="item">Adopt</a>
+        <a className="item">Resources</a>
+      <div className="right menu">
+        <div className="item">
+          <div className="ui icon input">
         <input type="text" placeholder="Search..."/>
-        <i aria-hidden="true" class="search icon"></i>
+        <i aria-hidden="true" className="search icon"></i>
         </div>
       </div>
       <a className="item">
@@ -74,8 +79,9 @@ class App extends Component {
         </div>
         </div>
 
-    <allAnimals allAnimals={this.state.allAnimals}/>
-    <adoptedAnimals adoptAnimal={this.adoptAnimal}
+    <AllAnimals allAnimals={this.state.allAnimals} user={this.state.user}/>
+
+    <AdoptedAnimals adoptAnimal={this.adoptAnimal}
       adoptedAnimals={this.state.adoptedAnimals} />
 
 
