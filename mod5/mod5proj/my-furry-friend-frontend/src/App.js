@@ -20,7 +20,8 @@ class App extends Component {
         lastname: "Kim",
         username: "Admin",
         email: "admin@email.com",
-        phone_number: "012-345-6789"
+        phone_number: "012-345-6789",
+        id:1
       }
     }
   }
@@ -32,23 +33,36 @@ class App extends Component {
       this.setState({
           allAnimals: animals
         })
-    )
-  }
+      )
+    }
 
   adoptAnimal = (animal) => {
-    if (this.state.adoptedAnimals.inclues(animal)) {
+    debugger
+    if (this.state.adoptedAnimals.includes(animal)) {
       return null
     } else {
-        this.setState({
-          adoptedAnimals: [...this.state.adoptedAnimals, animal]
+
+      let data={
+        user_id: this.state.user.id,
+        animal_id: animal.id
+      }
+
+      fetch(adoptionsURL, {
+        method: "POST",
+        headers: {
+          "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(data)
+        })
+        .then(resp=>resp.json())
+        .then(animal => {
+            console.log("adding", animal)
         })
       }
     }
-
-  handleChange = () => {
-    
-  }
-
+ //    this.setState({
+ //  adoptedAnimals: [...this.state.adoptedAnimals, animal]
+ // })
 
   render() {
     return (
@@ -79,11 +93,13 @@ class App extends Component {
         </div>
         </div>
 
-    <AllAnimals allAnimals={this.state.allAnimals} user={this.state.user}/>
+    <AllAnimals
+      allAnimals={this.state.allAnimals}
+      user={this.state.user}
+      adoptAnimal={this.adoptAnimal}/>
 
-    <AdoptedAnimals adoptAnimal={this.adoptAnimal}
+    <AdoptedAnimals
       adoptedAnimals={this.state.adoptedAnimals} />
-
 
     </div>
     );
