@@ -1,11 +1,14 @@
 import React from 'react'
 import AnimalCard from './AnimalCard'
+import {Icon} from 'semantic-ui-react'
 
 const AllAnimals = (props) => {
 
   return(
     <div>
+    <br></br>
     <h2>
+    <Icon name="paw" />
       Our Furry Friends
     </h2>
       <div className = "ui three column grid cards">

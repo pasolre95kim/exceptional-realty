@@ -37,7 +37,7 @@ class AnimalCard extends Component {
   render() {
     return (
     <Card>
-      <Image src={this.props.animal.image} />
+      <Image src={this.props.animal.image} circular/>
         <Card.Content>
           <Card.Header>Name: {this.props.animal.name}</Card.Header>
           <Card.Meta>{this.props.animal.type}</Card.Meta>
@@ -60,6 +60,7 @@ class AnimalCard extends Component {
               Adopt Me
             </Button>}
           centered={false}>
+
           <Modal.Header>
             Adoption Form For: {this.props.animal.name}
           </Modal.Header>
@@ -100,7 +101,7 @@ class AnimalCard extends Component {
               selection
               onChange={this.handleDropDown}/>
 
-          <Form onSubmit={this.props.adoptAnimal} >
+            <Form onSubmit={()=> this.props.adoptAnimal(this.props.animal)} >
             <Form.Group widths='equal'>
               <Form.Input onChange={this.handleChange}
                 fluid
@@ -113,23 +114,43 @@ class AnimalCard extends Component {
             </div>
           </Form.Group>
         </Form>
-
-
           </Modal.Description>
         </Modal.Content>
-        <Modal.Actions>
-          {this.state.stableIncome === 'no' || this.state.petFriendly === 'no' ?
-          <button className="ui disabled button">
-            <Icon name='checkmark' />
-            Submit
-          </button> :
-          <Button class color='green' inverted
-            onClick={()=> this.handleClick()}>
-            <Icon name='checkmark' />
-            Submit
-          </Button>}
 
+
+        <Modal.Actions>
+          {this.state.stableIncome === 'no' ||
+            this.state.petFriendly === 'no' ||
+            this.state.Vet === " "
+             ?
+          <div>
+            <button className="ui disabled button">
+                <Icon name='checkmark' />
+                Submit
+            </button>
+            <Button color="red"
+              onClick={this.handleClick}>
+              <Icon name="remove" />
+            Cancel
+          </Button>
+          </div>
+           :
+        <div>
+            <Button color='green' inverted
+              onClick={()=> this.props.adoptAnimal(this.props.animal)}>
+              <Icon name='checkmark' />
+              Submit
+            </Button>
+
+            <Button color="red"
+              onClick={this.handleClick}>
+              <Icon name="remove" />
+            Cancel
+          </Button>
+
+        </div>}
         </Modal.Actions>
+
       </Modal>
       </Card.Content>
     </Card>

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Header, Icon } from 'semantic-ui-react'
 import AllAnimals from './components/AllAnimals'
 import AdoptedAnimals from './components/AdoptedAnimals'
 import {Route, Link, Switch} from 'react-router-dom'
@@ -37,7 +38,6 @@ class App extends Component {
     }
 
   adoptAnimal = (animal) => {
-    debugger
     if (this.state.adoptedAnimals.includes(animal)) {
       return null
     } else {
@@ -46,60 +46,62 @@ class App extends Component {
         user_id: this.state.user.id,
         animal_id: animal.id
       }
-
+      console.log(data)
       fetch(adoptionsURL, {
         method: "POST",
         headers: {
           "Content-Type" : "application/json"
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({adoption: data})
         })
-        .then(resp=>resp.json())
+        .then(resp =>resp.json())
         .then(animal => {
-            console.log("adding", animal)
+             this.setState({
+           adoptedAnimals: [...this.state.adoptedAnimals, animal]
+          })
         })
       }
     }
- //    this.setState({
- //  adoptedAnimals: [...this.state.adoptedAnimals, animal]
- // })
 
   render() {
     return (
       <div className="App">
 
-      <h2 className="ui header">
+      <Header as='h2' icon textAlign='center'>
         <img src="https://i.etsystatic.com/14984992/r/il/2120fc/1560256262/il_570xN.1560256262_eaom.jpg" className="ui circular image"/>
         My Furry Friends
-        <div className="sub header">
+        <Header.Subheader>
          Your Life long friends
-        </div>
-      </h2>
+        </Header.Subheader>
+      </Header>
 
       <div className="ui secondary menu">
         <a className="active item">Home</a>
         <a className="item">Adopt</a>
+        <a className="item">My Adoptions</a>
         <a className="item">Resources</a>
       <div className="right menu">
         <div className="item">
           <div className="ui icon input">
-        <input type="text" placeholder="Search..."/>
-        <i aria-hidden="true" className="search icon"></i>
-        </div>
+          <input type="text" placeholder="Search..."/>
+          <i aria-hidden="true" className="search icon">
+          </i>
+          </div>
       </div>
-      <a className="item">
-        Sign In
-      </a>
-        </div>
-        </div>
+        <a className="item">
+          Sign In
+        </a>
+      </div>
+      </div>
+
+      <AdoptedAnimals
+        adoptedAnimals={this.state.adoptedAnimals} />
 
     <AllAnimals
       allAnimals={this.state.allAnimals}
       user={this.state.user}
       adoptAnimal={this.adoptAnimal}/>
 
-    <AdoptedAnimals
-      adoptedAnimals={this.state.adoptedAnimals} />
 
     </div>
     );
