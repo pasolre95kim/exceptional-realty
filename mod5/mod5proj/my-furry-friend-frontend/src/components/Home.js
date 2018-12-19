@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
 
-const Articles = () => {
 
+const Home = () => {
   return(
     <div>
-    These are the articles
+    This is home
     </div>
+
   )
 }
-
-export default Articles
+export default Home

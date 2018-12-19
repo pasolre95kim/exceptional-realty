@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Header, Icon } from 'semantic-ui-react'
 import AllAnimals from './components/AllAnimals'
+import Home from './components/Home'
+import Articles from './components/Articles'
 import AdoptedAnimals from './components/AdoptedAnimals'
 import {Route, Link, Switch} from 'react-router-dom'
 
@@ -16,6 +18,7 @@ class App extends Component {
       allAnimals:[],
       adoptedAnimals: [],
       searchTerm: "",
+      currentAnimal: "",
       user: {
         firstname: "Michelle",
         lastname: "Kim",
@@ -76,10 +79,10 @@ class App extends Component {
       </Header>
 
       <div className="ui secondary menu">
-        <a className="active item">Home</a>
-        <a className="item">Adopt</a>
-        <a className="item">My Adoptions</a>
-        <a className="item">Resources</a>
+        <Link to='/' className="item">Home</Link>
+        <Link to='/adopt' className="item">Adopt</Link>
+        <Link to='/myadoption' className="item">My Adoptions</Link>
+        <Link to='/articles' className="item">Resources</Link>
       <div className="right menu">
         <div className="item">
           <div className="ui icon input">
@@ -94,15 +97,28 @@ class App extends Component {
       </div>
       </div>
 
-      <AdoptedAnimals
-        adoptedAnimals={this.state.adoptedAnimals} />
+    <Switch>
 
-    <AllAnimals
-      allAnimals={this.state.allAnimals}
-      user={this.state.user}
-      adoptAnimal={this.adoptAnimal}/>
+      <Route path='/myadoption' render={() => {
+          return <AdoptedAnimals
+            adoptedAnimals={this.state.adoptedAnimals} />
+        }} />
 
+        <Route path='/articles' render={()=> {
+            return <Articles />
+          }} />
 
+        <Route path='/adopt' render={()=> {
+          return <AllAnimals
+            allAnimals={this.state.allAnimals}
+            user={this.state.user}
+            adoptAnimal={this.adoptAnimal}/>
+          }} />
+
+          <Route path='/' render={() => {
+              return <Home />
+            }}/>
+      </Switch>
     </div>
     );
   }
