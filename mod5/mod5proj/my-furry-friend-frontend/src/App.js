@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { Header, Icon } from 'semantic-ui-react'
 import AllAnimals from './components/AllAnimals'
 import Home from './components/Home'
+import LogInForm from './components/LogInForm'
 import Articles from './components/Articles'
+import SignUpForm from './components/SignUpForm'
 import AdoptedAnimals from './components/AdoptedAnimals'
 import {Route, Link, Switch} from 'react-router-dom'
 
@@ -91,9 +93,9 @@ class App extends Component {
           </i>
           </div>
       </div>
-        <a className="item">
+        <Link to='/login' className="item">
           Sign In
-        </a>
+        </Link>
       </div>
       </div>
 
@@ -108,6 +110,15 @@ class App extends Component {
             return <Articles />
           }} />
 
+          <Route path='/signup' render={() => {
+              return <SignUpForm />
+            }} />
+            
+        <Route path='/login' render={()=> {
+            return <LogInForm />
+          }} />
+
+
         <Route path='/adopt' render={()=> {
           return <AllAnimals
             allAnimals={this.state.allAnimals}
@@ -117,7 +128,7 @@ class App extends Component {
 
           <Route path='/' render={() => {
               return <Home />
-            }}/>
+            }} />
       </Switch>
     </div>
     );
