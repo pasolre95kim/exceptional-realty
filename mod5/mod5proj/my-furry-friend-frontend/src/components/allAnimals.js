@@ -17,6 +17,9 @@ const AllAnimals = (props) => {
           animal={animal}
           user={props.user}
           adoptAnimal={props.adoptAnimal}
+          setCurrentAnimal={props.setCurrentAnimal}
+          currentAnimal={props.currentAnimal}
+          addAnimal={props.addAnimal}
         />
       )}
       </div>

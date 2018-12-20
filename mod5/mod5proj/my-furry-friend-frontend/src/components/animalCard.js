@@ -4,6 +4,7 @@ import AdoptionForm from './AdoptionForm'
 
 
 const AnimalCard= (props) => {
+  debugger
   return (
     <Card>
       <Image src={props.animal.image} />
@@ -21,6 +22,10 @@ const AnimalCard= (props) => {
 
         <AdoptionForm
           animal={props.animal}
+          adoptedAnimals={props.adoptedAnimals}
+          user={props.user}
+          currentAnimal={props.currentAnimal}
+          addAnimal={props.addAnimal}
         />
 
       </Card.Content>

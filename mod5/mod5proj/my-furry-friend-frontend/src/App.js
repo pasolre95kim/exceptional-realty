@@ -32,6 +32,7 @@ class App extends Component {
     }
   }
 
+//fetching all list of animals
   componentDidMount(){
     fetch(animalsURL)
     .then(resp => resp.json())
@@ -40,33 +41,28 @@ class App extends Component {
           allAnimals: animals
         })
       )
-    }
+  //fetching my adopted pets
+    fetch(usersURL+`/${this.state.user.id}`)
+    .then(resp => resp.json())
+    .then(userData => {
+      this.setState({
+        adoptedAnimals: userData.adoptions
+      })
+    })
+  }
+  
+  addAnimal = (animal) => {
+      this.setState({
+        adoptedAnimals: [...this.state.adoptedAnimals, animal]
+    })
+  }
 
-  adoptAnimal = (animal) => {
-    if (this.state.adoptedAnimals.includes(animal)) {
-      return null
-    } else {
+  setCurrentAnimal = (animal) => {
+    this.setState({
+      currentAnimal: animal
+    })
+  }
 
-      let data={
-        user_id: this.state.user.id,
-        animal_id: animal.id
-      }
-      console.log(data)
-      fetch(adoptionsURL, {
-        method: "POST",
-        headers: {
-          "Content-Type" : "application/json"
-        },
-        body: JSON.stringify({adoption: data})
-        })
-        .then(resp =>resp.json())
-        .then(animal => {
-             this.setState({
-           adoptedAnimals: [...this.state.adoptedAnimals, animal]
-          })
-        })
-      }
-    }
 
   render() {
     return (
@@ -103,7 +99,9 @@ class App extends Component {
 
       <Route path='/myadoption' render={() => {
           return <AdoptedAnimals
-            adoptedAnimals={this.state.adoptedAnimals} />
+            adoptedAnimals={this.state.adoptedAnimals}
+            addAnimal={this.addAnimal}
+            user={this.state.user}/>
         }} />
 
         <Route path='/articles' render={()=> {
@@ -113,7 +111,7 @@ class App extends Component {
           <Route path='/signup' render={() => {
               return <SignUpForm />
             }} />
-            
+
         <Route path='/login' render={()=> {
             return <LogInForm />
           }} />
@@ -123,7 +121,9 @@ class App extends Component {
           return <AllAnimals
             allAnimals={this.state.allAnimals}
             user={this.state.user}
-            adoptAnimal={this.adoptAnimal}/>
+            adoptAnimal={this.adoptAnimal}
+            currentAnimal={this.state.currentAnimal}
+            addAnimal={this.addAnimal}/>
           }} />
 
           <Route path='/' render={() => {

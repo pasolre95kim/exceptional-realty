@@ -2,11 +2,13 @@ import React, { Component, Fragment } from 'react'
 import { Card, Button, Menu, Icon, Modal, Image, Form, Input, Dropdown } from 'semantic-ui-react'
 
 
+const adoptionsURL = "http://localhost:3000/adoptions"
+const animalsURL = "http://localhost:3000/animals"
 
 class AdoptionForm extends Component {
+  constructor(props){
+    super(props)
 
-  constructor(){
-    super()
     this.state = {
       form: false,
       stableIncome: "",
@@ -35,12 +37,51 @@ class AdoptionForm extends Component {
       this.setState({form: !this.state.form})
     }
 
+  adoptAnimal = (event) => {
+    event.preventDefault()
+
+    // if (this.props.adoptedAnimals.find(animal => animal.id === this.props.animal.id)) {
+    //   alert("You already added this pet")
+    // } else{
+
+      let data={
+        user_id: this.props.user.id,
+        animal_id: this.props.animal.id,
+        name: this.props.animal.name,
+        age: this.props.animal.age,
+        breed: this.props.animal.breed,
+        gender: this.props.animal.gender,
+        about: this.props.animal.about,
+        image: this.props.animal.image,
+        adoptionFee: this.props.animal.adoptionFee,
+        preferredHome: this.props.animal.preferredHome,
+        health: this.props.animal.health
+      }
+
+      fetch(adoptionsURL, {
+        method: "POST",
+        headers: {
+          "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(data)
+        })
+        .then(resp =>resp.json())
+        .then(data => {
+          console.log(data)
+          this.handleClick()
+          this.props.addAnimal(data)
+      })
+    }
+  
+
+
 render() {
   return(
     <Modal
+      style= {{background: "none"}}
       open={this.state.form}
       trigger={
-        <Button inverted color='brown'
+        <Button basic color="brown"
           onClick={()=> this.handleClick()
         }>
         <Icon name="paw" />
@@ -88,7 +129,7 @@ render() {
           selection
           onChange={this.handleDropDown}/>
 
-        <Form onSubmit={()=> this.props.adoptAnimal(this.props.animal)} >
+        <Form onSubmit={this.adoptAnimal} >
         <Form.Group widths='equal'>
           <Form.Input onChange={this.handleChange}
             fluid
@@ -111,20 +152,21 @@ render() {
         this.state.Vet === " "
          ?
       <div>
-        <button className="ui disabled button">
+        <Button className="ui disabled button">
             <Icon name='checkmark' />
             Submit
-        </button>
-        <Button color="red"
+        </Button>
+      <Button color="red"
         onClick={this.handleClick}>
         <Icon name="remove" />
-        Cancel
+        Close
       </Button>
-      </div>
+    </div>
        :
        <div>
         <Button color='green' inverted
-          onClick={()=> this.props.adoptAnimal(this.props.animal)}>
+          onClick={this.adoptAnimal}
+          type="submit">
           <Icon name='checkmark' />
           Submit
         </Button>
@@ -132,7 +174,7 @@ render() {
         <Button color="red"
           onClick={this.handleClick}>
           <Icon name="remove" />
-        Cancel
+        Close
         </Button>
 
       </div>}
