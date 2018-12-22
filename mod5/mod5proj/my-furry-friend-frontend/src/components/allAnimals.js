@@ -11,6 +11,7 @@ const AllAnimals = (props) => {
     <Icon name="paw" />
       Our Furry Friends
     </h2>
+    <br></br>
       <div className = "ui three column grid cards">
         {props.allAnimals.map(animal=> <AnimalCard
           key={animal.id}
@@ -20,6 +21,7 @@ const AllAnimals = (props) => {
           setCurrentAnimal={props.setCurrentAnimal}
           currentAnimal={props.currentAnimal}
           addAnimal={props.addAnimal}
+          adopted={false}
         />
       )}
       </div>

@@ -4,7 +4,51 @@ import "font-awesome/css/font-awesome.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 
-const SignUpForm = () => {
+const usersURL = "http://localhost:3000/users"
+
+class SignUpForm extends Component {
+
+  state={
+    password:"",
+    confirm_password: "",
+    username: ""
+  }
+
+  postUser = (data) => {
+    fetch(usersURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body:JSON.stringify(data)
+    })
+    .then(resp=>resp.json())
+    .then(data =>{
+      if (!data.error) {
+      localStorage.setItem("token", data.jwt)
+      localStorage.setItem("user", JSON.stringify(data.user))
+      console.log(data)}
+  })
+}
+
+  handleSubmit =() => {
+    if( this.state.password === this.state.confirm_password) {
+      let data = {user:{
+        username: this.state.username,
+        password: this.state.password}
+      }
+      this.postUser(data)
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name] : event.target.value
+    })
+  }
+
+  render() {
   return (
     <MDBContainer className="text-center" >
       <MDBRow>
@@ -22,10 +66,12 @@ const SignUpForm = () => {
               >
                 Username
               </label>
-              <input
+              <input onChange={this.handleChange}
                 type="text"
                 id="defaultFormEmailEx"
                 className="form-control"
+                name="username"
+                required
               />
 
               <label
@@ -34,26 +80,30 @@ const SignUpForm = () => {
               >
                 Your password
               </label>
-              <input
+              <input onChange={this.handleChange}
                 type="password"
                 id="defaultFormPasswordEx"
                 className="form-control"
+                name="password"
+                required
               />
 
               <label
                 htmlFor="defaultFormPasswordEx"
                 className="grey-text font-weight-light"
               >
-                Your email
+                Confirm Password
               </label>
-              <input
-                type="email"
+              <input onChange={this.handleChange}
+                type="password"
                 id="defaultFormEmail"
                 className="form-control"
+                name="confirm_password"
+                required
               />
 
               <div className="text-center mt-4">
-                <MDBBtn color="deep-orange" className="mb-3" type="submit">
+                <MDBBtn color="deep-orange" className="mb-3" type="submit" onClick={this.handleSubmit}>
                   Make Account
                 </MDBBtn>
               </div>
@@ -63,7 +113,8 @@ const SignUpForm = () => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
-  );
-};
+    );
+  };
+}
 
 export default SignUpForm;

@@ -3,27 +3,53 @@ import SignUpForm from './SignUpForm'
 import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
+const logInURL="http://localhost:3000/login"
 
 class LogInForm extends Component {
-  constuctor() {
-   this.routeChange = this.routeChange.bind(this);
-    }
 
-  routeChange(){
-   let path = `SignUpForm`;
-   this.props.history.push(path);
-   }
+  state={
+    username: "",
+    password: ""
+  }
+
+onChange = (event) => {
+  this.setState({
+    [event.target.name] : event.target.value
+  })
+}
+
+loginFetch = () => {
+  fetch(logInURL, {
+    method: "POST",
+    headers: {"Content-Type": "application/json", "Accept": "application/json"},
+    body: JSON.stringify({user: this.state})
+  })
+    .then(res => res.json())
+    .then(data => {
+      if(!data.error){
+        localStorage.setItem("token", data.jwt)
+        localStorage.setItem("user", JSON.stringify(data.user))
+      }
+    })
+
+}
+
+handleSubmit = event => {
+  this.loginFetch();
+}
 
   render(){
     return(
   <Segment placeholder>
     <Grid columns={2} relaxed='very' stackable>
       <Grid.Column>
-        <Form>
-          <Form.Input icon='user' iconPosition='left' label='Username' placeholder='Username' />
-          <Form.Input icon='lock' iconPosition='left' label='Password' type='password' />
+        <Form onSubmit={this.handleSubmit} >
+          <Form.Input icon='user' iconPosition='left' label='Username'  placeholder='Username' name="username" onChange={this.onChange} />
+          <Form.Input icon='lock' iconPosition='left' label='Password' type='password' name="password" onChange={this.onChange} />
 
-          <Button content='Login' primary />
+          <Button content='Login' primary
+
+            />
         </Form>
       </Grid.Column>
 

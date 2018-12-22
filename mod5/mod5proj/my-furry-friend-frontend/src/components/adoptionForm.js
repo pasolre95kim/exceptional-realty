@@ -10,6 +10,7 @@ class AdoptionForm extends Component {
     super(props)
 
     this.state = {
+      currentUser: props.user,
       form: false,
       stableIncome: "",
       petFriendly:" ",
@@ -37,16 +38,15 @@ class AdoptionForm extends Component {
       this.setState({form: !this.state.form})
     }
 
+
   adoptAnimal = (event) => {
     event.preventDefault()
-
-    // if (this.props.adoptedAnimals.find(animal => animal.id === this.props.animal.id)) {
-    //   alert("You already added this pet")
-    // } else{
+   let userId = this.props.user.id
+   let animalId = this.props.animal.id
 
       let data={
-        user_id: this.props.user.id,
-        animal_id: this.props.animal.id,
+        user_id: userId,
+        animal_id: animalId,
         name: this.props.animal.name,
         age: this.props.animal.age,
         breed: this.props.animal.breed,
@@ -57,37 +57,37 @@ class AdoptionForm extends Component {
         preferredHome: this.props.animal.preferredHome,
         health: this.props.animal.health
       }
-
+      console.log(data)
       fetch(adoptionsURL, {
         method: "POST",
         headers: {
-          "Content-Type" : "application/json"
+          "Content-Type" : "application/json",
+          "Accept" : "application/json"
         },
         body: JSON.stringify(data)
         })
         .then(resp =>resp.json())
         .then(data => {
-          console.log(data)
           this.handleClick()
           this.props.addAnimal(data)
       })
     }
-  
-
 
 render() {
   return(
+
     <Modal
       style= {{background: "none"}}
       open={this.state.form}
       trigger={
-        <Button basic color="brown"
-          onClick={()=> this.handleClick()
-        }>
+
+      <Button basic color="brown"
+          onClick={()=> this.handleClick() }>
         <Icon name="paw" />
           Adopt Me
-        </Button>}
-      centered={false}>
+      </Button>}
+        centered={false}
+      > : null}
 
       <Modal.Header>
         Adoption Form For: {this.props.animal.name}

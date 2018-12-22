@@ -1,34 +1,29 @@
 import React, { Component, Fragment } from 'react';
 import { Header, Icon } from 'semantic-ui-react'
+import {Route, Link, Switch} from 'react-router-dom'
 import AllAnimals from './components/AllAnimals'
 import Home from './components/Home'
 import LogInForm from './components/LogInForm'
 import Articles from './components/Articles'
 import SignUpForm from './components/SignUpForm'
 import AdoptedAnimals from './components/AdoptedAnimals'
-import {Route, Link, Switch} from 'react-router-dom'
+import AddAnimalForm from './components/AddAnimalForm'
 
 
 const animalsURL = "http://localhost:3000/animals"
 const adoptionsURL = "http://localhost:3000/adoptions"
 const usersURL = "http://localhost:3000/users"
+const profileURL = "http://localhost:3000/profile"
 
 class App extends Component {
   constructor(){
     super()
     this.state={
+      currentUser: null,
       allAnimals:[],
       adoptedAnimals: [],
       searchTerm: "",
-      currentAnimal: "",
-      user: {
-        firstname: "Michelle",
-        lastname: "Kim",
-        username: "Admin",
-        email: "admin@email.com",
-        phone_number: "012-345-6789",
-        id:1
-      }
+      currentAnimal: ""
     }
   }
 
@@ -41,19 +36,37 @@ class App extends Component {
           allAnimals: animals
         })
       )
-  //fetching my adopted pets
-    fetch(usersURL+`/${this.state.user.id}`)
-    .then(resp => resp.json())
-    .then(userData => {
-      this.setState({
-        adoptedAnimals: userData.adoptions
-      })
-    })
+    this.checkForToken();
   }
-  
+
+//get token & validate setToken
+  checkForToken = () => {
+    let token = localStorage.getItem("token")
+    if (token) {
+      fetch(profileURL, {headers: {Authorization: `Bearer ${token}`}})
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          if(!data.error){
+            localStorage.setItem("user", JSON.stringify(data.user));
+            this.setState({
+              currentUser: data.user,
+              adoptedAnimals: data.user.adoptions
+            })
+          }
+        })
+    }
+  }
+
   addAnimal = (animal) => {
       this.setState({
         adoptedAnimals: [...this.state.adoptedAnimals, animal]
+    })
+  }
+
+  deleteAnimal = (newArray) => {
+    this.setState({
+      adoptedAnimals: newArray
     })
   }
 
@@ -63,6 +76,12 @@ class App extends Component {
     })
   }
 
+  logout = () => {
+   localStorage.removeItem(`token`);
+   this.setState({ currentUser: null });
+ }
+
+  // {JSON.parse(localStorage.getItem("user")).username}
 
   render() {
     return (
@@ -75,12 +94,12 @@ class App extends Component {
          Your Life long friends
         </Header.Subheader>
       </Header>
-
       <div className="ui secondary menu">
         <Link to='/' className="item">Home</Link>
         <Link to='/adopt' className="item">Adopt</Link>
         <Link to='/myadoption' className="item">My Adoptions</Link>
         <Link to='/articles' className="item">Resources</Link>
+        <Link to='/newAnimalForm' className="item">New Animal Form</Link>
       <div className="right menu">
         <div className="item">
           <div className="ui icon input">
@@ -89,9 +108,10 @@ class App extends Component {
           </i>
           </div>
       </div>
+      {this.checkForToken ?
         <Link to='/login' className="item">
           Sign In
-        </Link>
+        </Link> : localStorage.setItem("token", "")}
       </div>
       </div>
 
@@ -100,27 +120,31 @@ class App extends Component {
       <Route path='/myadoption' render={() => {
           return <AdoptedAnimals
             adoptedAnimals={this.state.adoptedAnimals}
-            addAnimal={this.addAnimal}
-            user={this.state.user}/>
+            deleteAnimal={this.deleteAnimal}
+            user={this.state.currentUser}
+
+            />
         }} />
 
         <Route path='/articles' render={()=> {
             return <Articles />
           }} />
 
-          <Route path='/signup' render={() => {
+        <Route path='/signup' render={() => {
               return <SignUpForm />
             }} />
 
         <Route path='/login' render={()=> {
-            return <LogInForm />
+            return <LogInForm
+                checkForToken={this.checkForToken}/>
           }} />
 
+        <Route path='/newAnimalForm' component={AddAnimalForm} />
 
         <Route path='/adopt' render={()=> {
           return <AllAnimals
             allAnimals={this.state.allAnimals}
-            user={this.state.user}
+            user={this.state.currentUser}
             adoptAnimal={this.adoptAnimal}
             currentAnimal={this.state.currentAnimal}
             addAnimal={this.addAnimal}/>
@@ -129,6 +153,7 @@ class App extends Component {
           <Route path='/' render={() => {
               return <Home />
             }} />
+
       </Switch>
     </div>
     );
