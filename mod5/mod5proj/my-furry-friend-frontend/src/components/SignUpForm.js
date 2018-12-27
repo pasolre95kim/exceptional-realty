@@ -3,6 +3,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody,  MDBModalFooter, MD
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import 'react-inputs-validation/lib/react-inputs-validation.min.css';
 
 const usersURL = "http://localhost:3000/users"
 
@@ -88,6 +89,7 @@ class SignUpForm extends Component {
                 className="form-control"
                 name="password"
                 required
+                
               />
 
               <label
