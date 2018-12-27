@@ -23,7 +23,8 @@ class App extends Component {
       allAnimals:[],
       adoptedAnimals: [],
       searchTerm: "",
-      currentAnimal: ""
+      currentAnimal: "",
+      admin: false
     }
   }
 
@@ -43,10 +44,13 @@ class App extends Component {
   checkForToken = () => {
     let token = localStorage.getItem("token")
     if (token) {
-      fetch(profileURL, {headers: {Authorization: `Bearer ${token}`}})
+      fetch(profileURL,
+        {headers:
+          {Authorization: `Bearer ${token}`}
+        })
         .then(res => res.json())
         .then(data => {
-          console.log(data)
+          console.log(data.user)
           if(!data.error){
             localStorage.setItem("user", JSON.stringify(data.user));
             this.setState({
@@ -55,8 +59,9 @@ class App extends Component {
             })
           }
         })
+      }
     }
-  }
+
 
   addAnimal = (animal) => {
       this.setState({
@@ -99,6 +104,7 @@ class App extends Component {
         <Link to='/adopt' className="item">Adopt</Link>
         <Link to='/myadoption' className="item">My Adoptions</Link>
         <Link to='/articles' className="item">Resources</Link>
+
         <Link to='/newAnimalForm' className="item">New Animal Form</Link>
       <div className="right menu">
         <div className="item">
@@ -161,3 +167,8 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+//if currentUser's admin is true, let the addNewAnimal form visible
+// {this.state.currentUser.admin ? : null}

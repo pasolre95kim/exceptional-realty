@@ -1,58 +1,105 @@
 
-import React from "react";
+import React, {Component} from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 
 //Check how to add backgroun image!
 // <img src="https://www.pixelstalk.net/wp-content/uploads/2016/07/Cute-Baby-Animal-Background-Download-Free.jpg" />
 
-  const AddAnimalForm = () => {
+
+
+class AddAnimalForm extends Component {
+  render() {
     return (
     <div>
-      <MDBContainer text-align="center">
+      <MDBContainer className="text-center">
         <MDBRow>
-          <MDBCol md="8">
+          <MDBCol>
             <form>
               <p className="h4 text-center mb-4">New Animal Form</p>
               <label name="name" className="grey-text">
-                Animal Name
+                Name
               </label>
               <input
                 type="text"
                 id="defaultFormRegisterNameEx"
                 className="form-control"
+                name="name"
+                required
               />
               <br />
+                <label name="name" className="grey-text">
+                  Adoption Fee
+                </label>
+              <input
+                type="text"
+                id="defaultFormRegisterNameEx"
+                className="form-control"
+                name="adoptionFee"
+                required
+              />
+              <br />
+
+                <label name="name" className="grey-text">
+                  Picture
+                </label>
+                <input
+                  type="text"
+                  id="defaultFormRegisterNameEx"
+                  className="form-control"
+                  name="Image"
+                  required
+                />
+                <br />
+
+              <label name="name" className="grey-text">
+                  Health
+                </label>
+                <input
+                  type="text"
+                  id="defaultFormRegisterNameEx"
+                  className="form-control"
+                  name="health"
+                  required
+                />
+                <br />
+
               <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
-                Your email
+                Age
               </label>
               <input
-                type="email"
+                type="text"
                 id="defaultFormRegisterEmailEx"
                 className="form-control"
+                name="age"
+                required
               />
               <br />
+
               <label
-                htmlFor="defaultFormRegisterConfirmEx"
                 className="grey-text"
               >
-                Confirm your email
+              Breed
               </label>
               <input
-                type="email"
+                type="text"
                 id="defaultFormRegisterConfirmEx"
                 className="form-control"
+                name="breed"
+                required
               />
               <br />
+
               <label
-                htmlFor="defaultFormRegisterPasswordEx"
                 className="grey-text"
               >
-                Your password
+                Gender
               </label>
               <input
-                type="password"
+                type="text"
                 id="defaultFormRegisterPasswordEx"
                 className="form-control"
+                name="gender"
+                required
               />
               <div className="text-center mt-4">
                 <MDBBtn color="unique" type="submit">
@@ -68,5 +115,6 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
     </div>
     );
   };
+}
 
   export default AddAnimalForm;

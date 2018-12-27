@@ -39,6 +39,8 @@ class SignUpForm extends Component {
         password: this.state.password}
       }
       this.postUser(data)
+    } else {
+      alert("Your password do not match")
     }
   }
 
@@ -51,10 +53,10 @@ class SignUpForm extends Component {
   render() {
   return (
     <MDBContainer className="text-center" >
-      <MDBRow>
-        <MDBCol md="6">
+
+        <MDBCol >
           <MDBCard>
-            <MDBCardBody>
+            <MDBCardBody >
               <MDBCardHeader className="form-header warm-flame-gradient rounded">
                 <h3 className="my-3">
                   <MDBIcon icon="lock" /> Sign Up
@@ -111,7 +113,7 @@ class SignUpForm extends Component {
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
-      </MDBRow>
+
     </MDBContainer>
     );
   };

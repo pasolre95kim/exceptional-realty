@@ -29,6 +29,7 @@ loginFetch = () => {
       if(!data.error){
         localStorage.setItem("token", data.jwt)
         localStorage.setItem("user", JSON.stringify(data.user))
+      
       }
     })
 
@@ -48,7 +49,7 @@ handleSubmit = event => {
           <Form.Input icon='lock' iconPosition='left' label='Password' type='password' name="password" onChange={this.onChange} />
 
           <Button content='Login' primary
-
+            as={Link} to="/home"
             />
         </Form>
       </Grid.Column>
