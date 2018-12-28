@@ -6,14 +6,15 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 // <img src="https://www.pixelstalk.net/wp-content/uploads/2016/07/Cute-Baby-Animal-Background-Download-Free.jpg" />
 
 
+// <img className="add" src="http://2.bp.blogspot.com/-EZPlNgf_oDM/Tp-31Pv8d8I/AAAAAAAAAhQ/N2FHNHIDj04/s1600/Cute-Dog-Wallpaper.jpg" />
 
 class AddAnimalForm extends Component {
   render() {
     return (
-    <div style={{width: "100%"}}>
-      <img src="http://2.bp.blogspot.com/-EZPlNgf_oDM/Tp-31Pv8d8I/AAAAAAAAAhQ/N2FHNHIDj04/s1600/Cute-Dog-Wallpaper.jpg" />
+    <div >
       <MDBContainer
-        className="text-center">
+        className="text-center"
+        style={{width: "30%"}}>
         <MDBRow >
           <MDBCol>
             <form>

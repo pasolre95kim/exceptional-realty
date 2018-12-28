@@ -30,6 +30,7 @@ class App extends Component {
 
 //fetching all list of animals
   componentDidMount(){
+    this.checkForToken()
     fetch(animalsURL)
     .then(resp => resp.json())
     .then(animals =>
@@ -37,7 +38,7 @@ class App extends Component {
           allAnimals: animals
         })
       )
-    this.checkForToken();
+    
   }
 
 //get token & validate setToken

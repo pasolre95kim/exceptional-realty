@@ -12,3 +12,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+bg {
+  background-image: url("http://2.bp.blogspot.com/-EZPlNgf_oDM/Tp-31Pv8d8I/AAAAAAAAAhQ/N2FHNHIDj04/s1600/Cute-Dog-Wallpaper.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
