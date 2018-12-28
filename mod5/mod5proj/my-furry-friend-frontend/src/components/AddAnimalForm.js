@@ -10,9 +10,11 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 class AddAnimalForm extends Component {
   render() {
     return (
-    <div>
-      <MDBContainer className="text-center">
-        <MDBRow>
+    <div style={{width: "100%"}}>
+      <img src="http://2.bp.blogspot.com/-EZPlNgf_oDM/Tp-31Pv8d8I/AAAAAAAAAhQ/N2FHNHIDj04/s1600/Cute-Dog-Wallpaper.jpg" />
+      <MDBContainer
+        className="text-center">
+        <MDBRow >
           <MDBCol>
             <form>
               <p className="h4 text-center mb-4">New Animal Form</p>

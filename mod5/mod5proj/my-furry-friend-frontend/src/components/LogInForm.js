@@ -26,14 +26,15 @@ loginFetch = () => {
   })
     .then(res => res.json())
     .then(data => {
-      if(!data.error){
+      if(data.error){
+        alert("Incorrect username or password")
+      }else {
         localStorage.setItem("token", data.jwt)
         localStorage.setItem("user", JSON.stringify(data.user))
-      
+        this.props.updateCurrentUser(data.user)
       }
     })
-
-}
+  }
 
 handleSubmit = event => {
   this.loginFetch();
@@ -44,12 +45,12 @@ handleSubmit = event => {
   <Segment placeholder>
     <Grid columns={2} relaxed='very' stackable>
       <Grid.Column>
-        <Form onSubmit={this.handleSubmit} >
+        <Form onSubmit={this.loginFetch} >
           <Form.Input icon='user' iconPosition='left' label='Username'  placeholder='Username' name="username" onChange={this.onChange} />
           <Form.Input icon='lock' iconPosition='left' label='Password' type='password' name="password" onChange={this.onChange} />
 
           <Button content='Login' primary
-            as={Link} to="/home"
+            onClick={this.handleSubmit}
             />
         </Form>
       </Grid.Column>
@@ -67,4 +68,5 @@ handleSubmit = event => {
   }
 }
 
+//line 53 as={Link} to="/signup"
 export default LogInForm

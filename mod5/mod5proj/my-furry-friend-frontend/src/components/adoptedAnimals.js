@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import AnimalCard from './AnimalCard'
 import {Icon} from 'semantic-ui-react'
+import {Redirect} from 'react-router-dom'
 
+// user ?  : <Redirect to="/login" />
 const AdoptedAnimals = (props) => {
-  
-    return (
+  let {user} = props
+    return user ? (
       <div>
         <h2>
           <Icon name="paw" />
@@ -19,12 +21,11 @@ const AdoptedAnimals = (props) => {
         adoptedAnimals={props.adoptedAnimals}
         adopted={true}
         deleteAnimal ={props.deleteAnimal}
-
          />
       )}
       </div>
     </div>
-    )
+    )  : <Redirect to="/login" />
   }
 
 

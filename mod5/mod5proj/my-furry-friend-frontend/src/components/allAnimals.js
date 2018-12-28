@@ -1,10 +1,12 @@
 import React from 'react'
 import AnimalCard from './AnimalCard'
 import {Icon} from 'semantic-ui-react'
+import {Redirect} from 'react-router-dom'
+
 
 const AllAnimals = (props) => {
-
-  return(
+  let {user} = props
+  return user ? (
     <div>
     <br></br>
     <h2>
@@ -26,7 +28,7 @@ const AllAnimals = (props) => {
       )}
       </div>
     </div>
-  )
+  ) : <Redirect to="/login" />
 }
 export default AllAnimals
 

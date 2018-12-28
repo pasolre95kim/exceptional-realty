@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Header, Icon } from 'semantic-ui-react'
-import {Route, Link, Switch} from 'react-router-dom'
+import {Route, Link, Switch, Redirect} from 'react-router-dom'
 import AllAnimals from './components/AllAnimals'
 import Home from './components/Home'
 import LogInForm from './components/LogInForm'
@@ -81,6 +81,10 @@ class App extends Component {
     })
   }
 
+  updateCurrentUser = (user) => {
+  this.setState({currentUser: user})
+}
+
   logout = () => {
    localStorage.removeItem(`token`);
    this.setState({ currentUser: null });
@@ -133,17 +137,21 @@ class App extends Component {
         }} />
 
         <Route path='/articles' render={()=> {
-            return <Articles />
+            return <Articles
+              user={this.state.currentUser}
+              />
           }} />
 
         <Route path='/signup' render={() => {
               return <SignUpForm />
             }} />
 
-        <Route path='/login' render={()=> {
-            return <LogInForm
-                checkForToken={this.checkForToken}/>
-          }} />
+        <Route path='/login' render={()=>
+            this.state.currentUser ? <Redirect to="/myadoption"/> :
+            <LogInForm
+                checkForToken={this.checkForToken}
+                updateCurrentUser={this.updateCurrentUser}/>
+          } />
 
         <Route path='/newAnimalForm' component={AddAnimalForm} />
 
@@ -157,7 +165,9 @@ class App extends Component {
           }} />
 
           <Route path='/' render={() => {
-              return <Home />
+              return <Home
+                user={this.state.currentUser}
+                />
             }} />
 
       </Switch>

@@ -3,9 +3,11 @@ import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask, MDBCo
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import {Redirect} from 'react-router-dom'
 
-const Home = () => {
-  return(
+const Home = (props) => {
+
+  return (
     <MDBContainer>
        <MDBCarousel
          activeItem={1}
@@ -48,6 +50,6 @@ const Home = () => {
          </MDBCarouselInner>
        </MDBCarousel>
      </MDBContainer>
-  )
+  )  
 }
 export default Home
