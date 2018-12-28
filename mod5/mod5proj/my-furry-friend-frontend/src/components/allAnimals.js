@@ -9,7 +9,7 @@ const AllAnimals = (props) => {
   return user ? (
     <div>
     <br></br>
-    <h2>
+    <h2 style={{textAlign:"center"}}>
     <Icon name="paw" />
       Our Furry Friends
     </h2>

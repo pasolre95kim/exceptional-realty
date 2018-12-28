@@ -8,7 +8,8 @@ const AdoptedAnimals = (props) => {
   let {user} = props
     return user ? (
       <div>
-        <h2>
+        <br />
+        <h2 style={{textAlign:"center"}}>
           <Icon name="paw" />
           Your Pending Adoptions</h2>
         <br></br>

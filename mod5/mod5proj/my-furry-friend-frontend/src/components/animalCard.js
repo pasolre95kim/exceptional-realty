@@ -24,6 +24,7 @@ const AnimalCard= (props) => {
     .then(data => {
       console.log("deleted", data)
       props.deleteAnimal(newArray)
+      alert("Adoption has been canceled")
     })
   }
 

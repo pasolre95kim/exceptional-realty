@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody,  MDBModalFooter, MDBIcon, MDBCardHeader, MDBBtn } from "mdbreact";
+import {Link} from 'react-router-dom'
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
@@ -53,8 +54,8 @@ class SignUpForm extends Component {
 
   render() {
   return (
-    <MDBContainer className="text-center" >
-
+    <MDBContainer className="text-center"
+      onSubmit={this.handleSubmit}>
         <MDBCol >
           <MDBCard>
             <MDBCardBody >
@@ -89,7 +90,7 @@ class SignUpForm extends Component {
                 className="form-control"
                 name="password"
                 required
-                
+
               />
 
               <label
@@ -107,7 +108,7 @@ class SignUpForm extends Component {
               />
 
               <div className="text-center mt-4">
-                <MDBBtn color="deep-orange" className="mb-3" type="submit" onClick={this.handleSubmit}>
+                <MDBBtn as={Link} to="/adopt" color="deep-orange" className="mb-3" type="submit" >
                   Make Account
                 </MDBBtn>
               </div>

@@ -51,6 +51,11 @@ class App extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(data.user)
+          if (data.user.admin === true) {
+            this.setState({
+              admin: true
+            })
+          }
           if(!data.error){
             localStorage.setItem("user", JSON.stringify(data.user));
             this.setState({
@@ -87,8 +92,8 @@ class App extends Component {
 
   logOut = (event) => {
    alert("You have been signed out")
-   localStorage.removeItem(`token`);
-   this.setState({ currentUser: null });
+   localStorage.removeItem(`token`)
+   this.setState({ currentUser: null })
  }
 
   // {JSON.parse(localStorage.getItem("user")).username}
@@ -109,8 +114,9 @@ class App extends Component {
         <Link to='/adopt' className="item">Adopt</Link>
         <Link to='/myadoption' className="item">My Adoptions</Link>
         <Link to='/articles' className="item">Resources</Link>
+        {this.state.admin ?
+        <Link to='/newAnimalForm' className="item">New Animal Form</Link> : null }
 
-        <Link to='/newAnimalForm' className="item">New Animal Form</Link>
       <div className="right menu">
         <div className="item">
           <div className="ui icon input">
@@ -122,7 +128,7 @@ class App extends Component {
 
       {this.state.currentUser ? (
         <Fragment>
-        <Menu.Item onClick={this.logOut} className="item" name="Sign Out "/>
+        <Menu.Item onClick={this.logOut} className="item" name="Sign Out " />
 
         </Fragment>)
         :   (<Menu.Item as={Link} to="/login" name= "Login" /> )}
@@ -152,7 +158,7 @@ class App extends Component {
             }} />
 
         <Route path='/login' render={()=>
-            this.state.currentUser ? <Redirect to="/myadoption"/> :
+            this.state.currentUser ? <Redirect to="/myadoption" /> :
             <LogInForm
                 checkForToken={this.checkForToken}
                 updateCurrentUser={this.updateCurrentUser}/>
