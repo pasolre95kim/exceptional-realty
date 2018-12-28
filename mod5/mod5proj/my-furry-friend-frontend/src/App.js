@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { Header, Icon } from 'semantic-ui-react'
-import {Route, Link, Switch, Redirect} from 'react-router-dom'
+import { Header, Icon, Menu } from 'semantic-ui-react'
+import {Route, Link, Switch, Redirect, withRouter} from 'react-router-dom'
 import AllAnimals from './components/AllAnimals'
 import Home from './components/Home'
 import LogInForm from './components/LogInForm'
@@ -85,7 +85,8 @@ class App extends Component {
   this.setState({currentUser: user})
 }
 
-  logout = () => {
+  logOut = (event) => {
+   alert("You have been signed out")
    localStorage.removeItem(`token`);
    this.setState({ currentUser: null });
  }
@@ -118,10 +119,14 @@ class App extends Component {
           </i>
           </div>
       </div>
-      {this.checkForToken ?
-        <Link to='/login' className="item">
-          Sign In
-        </Link> : localStorage.setItem("token", "")}
+
+      {this.state.currentUser ? (
+        <Fragment>
+        <Menu.Item onClick={this.logOut} className="item" name="Sign Out "/>
+
+        </Fragment>)
+        :   (<Menu.Item as={Link} to="/login" name= "Login" /> )}
+
       </div>
       </div>
 
@@ -177,8 +182,8 @@ class App extends Component {
 }
 
 export default App;
-
-
+// <Nav logged_in={!!this.state.currentUser} logout={this.logout}/>
+// {this.checkForToken ?: localStorage.setItem("token", "")}
 
 //if currentUser's admin is true, let the addNewAnimal form visible
 // {this.state.currentUser.admin ? : null}
