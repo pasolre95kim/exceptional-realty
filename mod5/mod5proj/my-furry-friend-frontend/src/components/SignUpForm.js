@@ -55,6 +55,7 @@ class SignUpForm extends Component {
   render() {
   return (
     <MDBContainer className="text-center"
+      style={{width: "30%"}}
       onSubmit={this.handleSubmit}>
         <MDBCol >
           <MDBCard>
