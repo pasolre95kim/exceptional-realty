@@ -11,7 +11,7 @@ const AdoptedAnimals = (props) => {
         <br />
         <h2 style={{textAlign:"center"}}>
           <Icon name="paw" />
-          Your Pending Adoptions</h2>
+          Hello, Your Pending Adoptions </h2>
         <br></br>
         <div className="ui three column grid cards">
       {props.adoptedAnimals.map(animal => <AnimalCard

@@ -42,7 +42,7 @@ class SignUpForm extends Component {
       }
       this.postUser(data)
     } else {
-      alert("Your password do not match")
+      alert("Your passwords do not match")
     }
   }
 
@@ -54,12 +54,12 @@ class SignUpForm extends Component {
 
   render() {
   return (
+  <form onSubmit={this.handleSubmit}>
     <MDBContainer className="text-center"
-      style={{width: "30%"}}
-      onSubmit={this.handleSubmit}>
-        <MDBCol >
+      style={{width: "30%"}}>
+        <MDBCol>
           <MDBCard>
-            <MDBCardBody >
+            <MDBCardBody>
               <MDBCardHeader className="form-header warm-flame-gradient rounded">
                 <h3 className="my-3">
                   <MDBIcon icon="lock" /> Sign Up
@@ -109,7 +109,7 @@ class SignUpForm extends Component {
               />
 
               <div className="text-center mt-4">
-                <MDBBtn as={Link} to="/adopt" color="deep-orange" className="mb-3" type="submit" >
+                <MDBBtn onClick={this.handleSubmit} color="deep-orange" className="mb-3" type="submit" >
                   Make Account
                 </MDBBtn>
               </div>
@@ -119,6 +119,7 @@ class SignUpForm extends Component {
         </MDBCol>
 
     </MDBContainer>
+  </form>
     );
   };
 }

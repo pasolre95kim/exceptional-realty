@@ -38,7 +38,7 @@ class App extends Component {
           allAnimals: animals
         })
       )
-    
+
   }
 
 //get token & validate setToken
@@ -78,6 +78,12 @@ class App extends Component {
   deleteAnimal = (newArray) => {
     this.setState({
       adoptedAnimals: newArray
+    })
+  }
+
+  deleteFromAll = (newArray) => {
+    this.setState({
+      allAnimals: newArray
     })
   }
 
@@ -154,9 +160,9 @@ class App extends Component {
               />
           }} />
 
-        <Route path='/signup' render={() => {
-              return <SignUpForm />
-            }} />
+        <Route path='/signup' render={() =>
+            this.props.currentUser ? <Redirect to='adopt' /> : <SignUpForm />
+            } />
 
         <Route path='/login' render={()=>
             this.state.currentUser ? <Redirect to="/myadoption" /> :
@@ -165,7 +171,8 @@ class App extends Component {
                 updateCurrentUser={this.updateCurrentUser}/>
           } />
 
-        <Route path='/newAnimalForm' component={AddAnimalForm} />
+        <Route path='/newAnimalForm' component={AddAnimalForm}
+          user={this.state.currentUser}/>
 
         <Route path='/adopt' render={()=> {
           return <AllAnimals
@@ -173,7 +180,9 @@ class App extends Component {
             user={this.state.currentUser}
             adoptAnimal={this.adoptAnimal}
             currentAnimal={this.state.currentAnimal}
-            addAnimal={this.addAnimal}/>
+            addAnimal={this.addAnimal}
+            admin={this.state.admin}
+            deleteFromAll={this.deleteFromAll}/>
           }} />
 
           <Route path='/' render={() => {

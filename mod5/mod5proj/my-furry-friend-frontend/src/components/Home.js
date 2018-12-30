@@ -14,8 +14,8 @@ const Home = (props) => {
          length={3}
          showControls={true}
          showIndicators={true}
-         className="z-depth-1"
-       >
+         className="z-depth-1">
+
          <MDBCarouselInner>
            <MDBCarouselItem itemId="1">
              <MDBView>
@@ -45,11 +45,12 @@ const Home = (props) => {
                  alt="Third slide"
                />
                <MDBMask overlay="black-slight" />
+
              </MDBView>
            </MDBCarouselItem>
          </MDBCarouselInner>
        </MDBCarousel>
      </MDBContainer>
-  )  
+  )
 }
 export default Home

@@ -24,6 +24,9 @@ const AllAnimals = (props) => {
           currentAnimal={props.currentAnimal}
           addAnimal={props.addAnimal}
           adopted={false}
+          admin={props.admin}
+          allAnimals={props.allAnimals}
+          deleteFromAll={props.deleteFromAll}
         />
       )}
       </div>

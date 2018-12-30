@@ -42,6 +42,8 @@ handleSubmit = event => {
 
   render(){
     return(
+<div style={{textAlign: "center"}}>
+  Please Log In/Sign Up To Proceed
   <Segment placeholder>
     <Grid columns={2} relaxed='very' stackable>
       <Grid.Column>
@@ -64,6 +66,7 @@ handleSubmit = event => {
 
     <Divider vertical>Or</Divider>
   </Segment>
+</div>
     )
   }
 }
