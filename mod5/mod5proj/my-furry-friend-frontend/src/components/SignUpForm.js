@@ -25,20 +25,23 @@ class SignUpForm extends Component {
       },
       body:JSON.stringify(data)
     })
-    .then(resp=>resp.json())
-    .then(data =>{
-      if (!data.error) {
+    .then(resp => resp.json())
+    .then(data => {
+      this.props.updateCurrentUser(data.user)
       localStorage.setItem("token", data.jwt)
       localStorage.setItem("user", JSON.stringify(data.user))
-      console.log(data)}
+      console.log(data)
   })
 }
 
   handleSubmit =() => {
+
     if( this.state.password === this.state.confirm_password) {
       let data = {user:{
         username: this.state.username,
-        password: this.state.password}
+        password: this.state.password,
+        admin: false
+        }
       }
       this.postUser(data)
     } else {

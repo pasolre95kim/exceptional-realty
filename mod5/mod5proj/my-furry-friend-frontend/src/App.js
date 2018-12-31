@@ -31,6 +31,7 @@ class App extends Component {
 //fetching all list of animals
   componentDidMount(){
     this.checkForToken()
+
     fetch(animalsURL)
     .then(resp => resp.json())
     .then(animals =>
@@ -38,11 +39,11 @@ class App extends Component {
           allAnimals: animals
         })
       )
-
   }
 
 //get token & validate setToken
   checkForToken = () => {
+
     let token = localStorage.getItem("token")
     if (token) {
       fetch(profileURL,
@@ -52,35 +53,39 @@ class App extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(data.user)
-          if (data.user.admin === true) {
-            this.setState({
-              admin: true
-            })
-          }
-          if(!data.error){
+
+          if (!data.error) {
             localStorage.setItem("user", JSON.stringify(data.user));
             this.setState({
               currentUser: data.user,
               adoptedAnimals: data.user.adoptions
             })
           }
+          // if (data.user.admin === true) {
+          //   this.setState({
+          //     admin: true
+          //   })
+          // }
         })
       }
     }
 
 
+//ADDING ANOTHER ADOPTION
   addAnimal = (animal) => {
       this.setState({
         adoptedAnimals: [...this.state.adoptedAnimals, animal]
     })
   }
 
+//DELETING FROM ADOPTED ANIMALS FOR USERS
   deleteAnimal = (newArray) => {
     this.setState({
       adoptedAnimals: newArray
     })
   }
 
+//DELETING FROM ALL ANIMALS
   deleteFromAll = (newArray) => {
     this.setState({
       allAnimals: newArray
@@ -93,15 +98,35 @@ class App extends Component {
     })
   }
 
-  updateCurrentUser = (user) => {
-  this.setState({currentUser: user})
+  updateCurrentUser = (user, adoptions) => {
+    if (user.admin === true) {
+      this.setState({
+        admin:true,
+        currentUser: user,
+        adoptedAnimals: adoptions
+      })
+    }
+    else {
+    this.setState({
+      admin: false,
+      currentUser: user,
+      adoptedAnimals: adoptions
+    })
+  }
 }
 
+//LOGOUT METHOD
   logOut = (event) => {
    alert("You have been signed out")
    localStorage.removeItem(`token`)
    this.setState({ currentUser: null })
  }
+
+
+  onSearchHandler = event => {
+    event.preventDefault()
+    this.setState({searchTerm: event.target.value})
+  }
 
   // {JSON.parse(localStorage.getItem("user")).username}
 
@@ -127,7 +152,9 @@ class App extends Component {
       <div className="right menu">
         <div className="item">
           <div className="ui icon input">
-          <input type="text" placeholder="Search..."/>
+          <input type="text" placeholder="Search..."
+            onChange={this.onSearchHandler} />
+
           <i aria-hidden="true" className="search icon">
           </i>
           </div>
@@ -135,7 +162,7 @@ class App extends Component {
 
       {this.state.currentUser ? (
         <Fragment>
-        <Menu.Item onClick={this.logOut} className="item" name="Sign Out " />
+        <Menu.Item onClick={this.logOut} className="item" name="Sign Out" />
 
         </Fragment>)
         :   (<Menu.Item as={Link} to="/login" name= "Login" /> )}
@@ -161,11 +188,12 @@ class App extends Component {
           }} />
 
         <Route path='/signup' render={() =>
-            this.props.currentUser ? <Redirect to='adopt' /> : <SignUpForm />
+            this.props.currentUser ? <Redirect to='adopt' /> : <SignUpForm
+            updateCurrentUser={this.updateCurrentUser}/>
             } />
 
         <Route path='/login' render={()=>
-            this.state.currentUser ? <Redirect to="/myadoption" /> :
+            this.state.currentUser ? <Redirect to="/adopt" /> :
             <LogInForm
                 checkForToken={this.checkForToken}
                 updateCurrentUser={this.updateCurrentUser}/>
@@ -182,7 +210,9 @@ class App extends Component {
             currentAnimal={this.state.currentAnimal}
             addAnimal={this.addAnimal}
             admin={this.state.admin}
-            deleteFromAll={this.deleteFromAll}/>
+            deleteFromAll={this.deleteFromAll}
+            filterTerm={this.state.searchTerm}
+            onSearchHandler={this.onSearchHandler}/>
           }} />
 
           <Route path='/' render={() => {

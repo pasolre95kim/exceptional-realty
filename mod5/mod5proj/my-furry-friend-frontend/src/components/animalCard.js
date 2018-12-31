@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Card, Button, Icon, Modal, Image, Form, Input } from 'semantic-ui-react'
+import { Card, Button, Icon, Image } from 'semantic-ui-react'
 import AdoptionForm from './AdoptionForm'
 
 
@@ -34,7 +34,7 @@ const AnimalCard= (props) => {
     let newArray = [...props.allAnimals]
     newArray.splice(index, 1)
 
-    fetch(animalsURL, {
+    fetch(animalsURL + `/${props.allAnimals[index].id}`, {
       method: "DELETE",
       headers: {
         "Content-Type" : "application/json"
@@ -43,7 +43,7 @@ const AnimalCard= (props) => {
     .then(resp => resp.json())
     .then(data => {
       console.log("deleted", animal, "from allanimals")
-      alert("Animal has been deleted")
+      alert(`${props.animal} has been deleted`)
       props.deleteFromAll(newArray)
     })
   }

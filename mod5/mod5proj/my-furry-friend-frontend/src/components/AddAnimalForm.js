@@ -34,7 +34,7 @@ class AddAnimalForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    debugger
+
     let data = {
       name: this.state.name,
       age: this.state.age,
@@ -77,9 +77,10 @@ class AddAnimalForm extends Component {
                 className="form-control"
                 name="name"
                 onChange={this.handleChange}
+                placeholder="Name..."
                 required
               />
-              <br />
+
                 <label name="name" className="grey-text">
                   Adoption Fee
                 </label>
@@ -89,9 +90,10 @@ class AddAnimalForm extends Component {
                 className="form-control"
                 name="adoptionFee"
                 onChange={this.handleChange}
+                placeholder="Adoption Fee..."
                 required
               />
-              <br />
+
 
                 <label name="name" className="grey-text">
                   Picture
@@ -102,9 +104,10 @@ class AddAnimalForm extends Component {
                   className="form-control"
                   name="image"
                   onChange={this.handleChange}
+                  placeholder="Picture..."
                   required
                 />
-                <br />
+
 
               <label name="name" className="grey-text">
                   Health
@@ -115,9 +118,10 @@ class AddAnimalForm extends Component {
                   className="form-control"
                   name="health"
                   onChange={this.handleChange}
+                  placeholder="Health..."
                   required
                 />
-                <br />
+
 
               <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
                 Age
@@ -128,9 +132,10 @@ class AddAnimalForm extends Component {
                 className="form-control"
                 name="age"
                 onChange={this.handleChange}
+                placeholder="Age..."
                 required
               />
-              <br />
+
 
               <label
                 className="grey-text"
@@ -143,9 +148,10 @@ class AddAnimalForm extends Component {
                 className="form-control"
                 name="breed"
                 onChange={this.handleChange}
+                placeholder="Breed..."
                 required
               />
-              <br />
+
 
               <label
                 className="grey-text"
@@ -158,9 +164,10 @@ class AddAnimalForm extends Component {
                 className="form-control"
                 name="gender"
                 onChange={this.handleChange}
+                placeholder="Gender..."
                 required
               />
-            <br />
+
               <label
                 className="grey-text"
               >
@@ -172,9 +179,10 @@ class AddAnimalForm extends Component {
                 className="form-control"
                 name="preferredHome"
                 onChange={this.handleChange}
+                placeholder="Good in home with..."
                 required
               />
-              <br />
+
 
               <div className="text-center mt-4">
                 <MDBBtn color="unique" type="submit">

@@ -6,6 +6,11 @@ import {Redirect} from 'react-router-dom'
 
 const AllAnimals = (props) => {
   let {user} = props
+  let filteredAnimals = props.allAnimals.filter((animal) => animal.breed.includes(props.filterTerm)
+  || animal.name.includes(props.filterTerm)
+  || animal.age.includes(props.filterTerm)
+  || animal.gender.includes(props.filterTerm))
+  
   return user ? (
     <div>
     <br></br>
@@ -15,7 +20,7 @@ const AllAnimals = (props) => {
     </h2>
     <br></br>
       <div className = "ui three column grid cards">
-        {props.allAnimals.map(animal=> <AnimalCard
+        {filteredAnimals.map(animal=> <AnimalCard
           key={animal.id}
           animal={animal}
           user={props.user}

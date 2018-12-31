@@ -19,6 +19,7 @@ onChange = (event) => {
 }
 
 loginFetch = () => {
+
   fetch(logInURL, {
     method: "POST",
     headers: {"Content-Type": "application/json", "Accept": "application/json"},
@@ -31,7 +32,7 @@ loginFetch = () => {
       }else {
         localStorage.setItem("token", data.jwt)
         localStorage.setItem("user", JSON.stringify(data.user))
-        this.props.updateCurrentUser(data.user)
+        this.props.updateCurrentUser(data.user, data.user.adoptions)
       }
     })
   }
@@ -58,7 +59,7 @@ handleSubmit = event => {
       </Grid.Column>
 
       <Grid.Column verticalAlign='middle'>
-        <Button as={Link} to="/signup" primarycontent='Sign up' icon='signup' size='big'>
+        <Button as={Link} to="/signup" primarycontent='Sign up'size='big'>
         Sign Up
         </Button>
       </Grid.Column>
