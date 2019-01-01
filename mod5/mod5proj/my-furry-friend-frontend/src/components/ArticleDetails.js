@@ -1,12 +1,24 @@
-import React, { Component, Fragment } from 'react';
-import { Header, Icon, Image } from 'semantic-ui-react'
+import React, { Fragment } from 'react';
+import { Header, Icon, Image, Container } from 'semantic-ui-react'
 
-  const ArticleDetails = (props) => {
-    return(
+const ArticleDetails = ({article}) => {
+    return article ? (
       <div>
-        <Header>{this.props.article.title}</Header>
+      <Container text>
+        <Header>
+        {article.title}
+        </Header>
+        <h3>
+        {article.abstract}
+        </h3>
+      <br />
+        <p>
+        {article.body}
+        </p>
+      </Container>
+
       </div>
-    )
+    ) : null
   }
 
 export default ArticleDetails

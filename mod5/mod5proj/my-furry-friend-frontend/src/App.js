@@ -66,17 +66,18 @@ class App extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(data.user)
-          if (data.user.admin === true) {
-            this.setState({
-              admin: true
-            })
-          }
+
           if (!data.error) {
             localStorage.setItem("user", JSON.stringify(data.user));
             this.setState({
               currentUser: data.user,
               adoptedAnimals: data.user.adoptions
             })
+            if (data.user.admin === true) {
+              this.setState({
+                admin: true
+              })
+            }
           }
         })
       }
@@ -193,9 +194,9 @@ class App extends Component {
 
 
 
-      <Route path='/articleDetails/:id' render={(props)=> {
+      <Route path='/articles/:id' render={(props)=> {
         let articleId = props.match.params.id
-        let article = this.state.articles.find(a => a.id === articleId)
+        let article = this.state.allArticles.find(a => a.id === articleId)
         return <ArticleDetails article={article} />
         }} />
 

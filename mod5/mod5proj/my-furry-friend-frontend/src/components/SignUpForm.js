@@ -17,6 +17,7 @@ class SignUpForm extends Component {
   }
 
   postUser = (data) => {
+    debugger
     fetch(usersURL, {
       method: "POST",
       headers: {

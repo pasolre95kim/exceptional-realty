@@ -1,19 +1,28 @@
-import React, { Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {Header, Image, Segment, Button, Icon, Container } from 'semantic-ui-react'
 import {Link, Redirect} from 'react-router-dom'
 
 
 const Articles = (props) => {
-  console.log("articles", props)
 
   return props.user ? (
-  <Container text>
-   <Header as='h2' >
-     {props.article.title}
-   </Header>
-      <br />
-      <p>{props.article.body}</p>
-    </Container>
+  <div>
+    <br />
+    <Container text>
+     <Header as='h2'attached='top' >
+       {props.article.title}
+     </Header>
+       <Segment attached>
+         {props.article.abstract}
+         <br />
+         <Link to={`/articles/${props.article.id}`}
+           data-article-id={props.article.id}>
+           <Icon name="heart" />
+           Read More
+         </Link>
+       </Segment>
+      </Container>
+    </div>
   ) : <Redirect to="/login" />
 }
 
