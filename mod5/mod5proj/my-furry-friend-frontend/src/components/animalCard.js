@@ -62,6 +62,7 @@ const AnimalCard= (props) => {
               {props.animal.health ?
             <Card.Description>Health: {props.animal.health}</Card.Description> : null}
             <Card.Description>{props.animal.preferredHome}</Card.Description>
+            <Card.Description>Adoption Fee: {props.animal.adoptionFee}</Card.Description>
         </Card.Content>
       <Card.Content extra>
 

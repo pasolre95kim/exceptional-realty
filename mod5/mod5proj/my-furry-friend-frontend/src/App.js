@@ -4,12 +4,15 @@ import {Route, Link, Switch, Redirect, withRouter} from 'react-router-dom'
 import AllAnimals from './components/AllAnimals'
 import Home from './components/Home'
 import LogInForm from './components/LogInForm'
-import Articles from './components/Articles'
 import SignUpForm from './components/SignUpForm'
 import AdoptedAnimals from './components/AdoptedAnimals'
 import AddAnimalForm from './components/AddAnimalForm'
+import ArticleDetails from './components/ArticleDetails'
+import AllArticles from './components/AllArticles'
+import Articles from './components/Articles'
 
 
+const articlesURL = "http://localhost:3000/articles"
 const animalsURL = "http://localhost:3000/animals"
 const adoptionsURL = "http://localhost:3000/adoptions"
 const usersURL = "http://localhost:3000/users"
@@ -22,13 +25,14 @@ class App extends Component {
       currentUser: null,
       allAnimals:[],
       adoptedAnimals: [],
+      allArticles: [],
       searchTerm: "",
       currentAnimal: "",
       admin: false
     }
   }
 
-//fetching all list of animals
+//fetching all list of animals & all articles when DOM loads
   componentDidMount(){
     this.checkForToken()
 
@@ -39,6 +43,15 @@ class App extends Component {
           allAnimals: animals
         })
       )
+    fetch(articlesURL)
+    .then(resp => resp.json())
+    .then(articles => {
+      console.log(articles)
+      this.setState({
+        allArticles: articles
+    })
+    }
+   )
   }
 
 //get token & validate setToken
@@ -53,7 +66,11 @@ class App extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(data.user)
-
+          if (data.user.admin === true) {
+            this.setState({
+              admin: true
+            })
+          }
           if (!data.error) {
             localStorage.setItem("user", JSON.stringify(data.user));
             this.setState({
@@ -61,11 +78,6 @@ class App extends Component {
               adoptedAnimals: data.user.adoptions
             })
           }
-          // if (data.user.admin === true) {
-          //   this.setState({
-          //     admin: true
-          //   })
-          // }
         })
       }
     }
@@ -145,7 +157,7 @@ class App extends Component {
         <Link to='/' className="item">Home</Link>
         <Link to='/adopt' className="item">Adopt</Link>
         <Link to='/myadoption' className="item">My Adoptions</Link>
-        <Link to='/articles' className="item">Resources</Link>
+        <Link to='/allArticles' className="item">Resources</Link>
         {this.state.admin ?
         <Link to='/newAnimalForm' className="item">New Animal Form</Link> : null }
 
@@ -176,50 +188,62 @@ class App extends Component {
           return <AdoptedAnimals
             adoptedAnimals={this.state.adoptedAnimals}
             deleteAnimal={this.deleteAnimal}
-            user={this.state.currentUser}
-
-            />
+            user={this.state.currentUser}/>
         }} />
 
-        <Route path='/articles' render={()=> {
-            return <Articles
-              user={this.state.currentUser}
-              />
-          }} />
 
-        <Route path='/signup' render={() =>
-            this.props.currentUser ? <Redirect to='adopt' /> : <SignUpForm
-            updateCurrentUser={this.updateCurrentUser}/>
-            } />
 
-        <Route path='/login' render={()=>
-            this.state.currentUser ? <Redirect to="/adopt" /> :
-            <LogInForm
-                checkForToken={this.checkForToken}
-                updateCurrentUser={this.updateCurrentUser}/>
+      <Route path='/articleDetails/:id' render={(props)=> {
+        let articleId = props.match.params.id
+        let article = this.state.articles.find(a => a.id === articleId)
+        return <ArticleDetails article={article} />
+        }} />
+
+      <Route path='/signup' render={() =>
+          this.props.currentUser ? <Redirect to='/adopt' /> : <SignUpForm
+          updateCurrentUser={this.updateCurrentUser}/>
           } />
 
-        <Route path='/newAnimalForm' component={AddAnimalForm}
-          user={this.state.currentUser}/>
+      <Route path='/login' render={()=>
+          this.state.currentUser ? <Redirect to="/adopt" /> :
+          <LogInForm
+              checkForToken={this.checkForToken}
+              updateCurrentUser={this.updateCurrentUser}/>
+        } />
 
-        <Route path='/adopt' render={()=> {
-          return <AllAnimals
-            allAnimals={this.state.allAnimals}
+      <Route path='/newAnimalForm' component={AddAnimalForm}
+        user={this.state.currentUser}/>
+
+      <Route path='/adopt' render={()=> {
+        return <AllAnimals
+          allAnimals={this.state.allAnimals}
+          user={this.state.currentUser}
+          adoptAnimal={this.adoptAnimal}
+          currentAnimal={this.state.currentAnimal}
+          addAnimal={this.addAnimal}
+          admin={this.state.admin}
+          deleteFromAll={this.deleteFromAll}
+          filterTerm={this.state.searchTerm}
+          onSearchHandler={this.onSearchHandler}/>
+        }} />
+
+      <Route path="/articles" render={()=>  {
+          return <Articles
+            allArticles={this.state.allArticles} />
+        }} />
+
+      <Route path='/allArticles' render={() => {
+          return <AllArticles
+            allArticles={this.state.allArticles}
+            user={this.state.currentUser}/>
+        }} />
+
+
+      <Route path='/' render={() => {
+          return <Home
             user={this.state.currentUser}
-            adoptAnimal={this.adoptAnimal}
-            currentAnimal={this.state.currentAnimal}
-            addAnimal={this.addAnimal}
-            admin={this.state.admin}
-            deleteFromAll={this.deleteFromAll}
-            filterTerm={this.state.searchTerm}
-            onSearchHandler={this.onSearchHandler}/>
-          }} />
-
-          <Route path='/' render={() => {
-              return <Home
-                user={this.state.currentUser}
-                />
-            }} />
+            />
+        }} />
 
       </Switch>
     </div>

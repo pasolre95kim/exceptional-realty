@@ -10,7 +10,7 @@ const AllAnimals = (props) => {
   || animal.name.includes(props.filterTerm)
   || animal.age.includes(props.filterTerm)
   || animal.gender.includes(props.filterTerm))
-  
+
   return user ? (
     <div>
     <br></br>
