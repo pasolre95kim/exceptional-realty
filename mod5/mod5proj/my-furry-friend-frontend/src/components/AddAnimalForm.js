@@ -186,7 +186,8 @@ class AddAnimalForm extends Component {
 
 
               <div className="text-center mt-4">
-                <MDBBtn color="unique" type="submit">
+                <MDBBtn color="warning" outline
+                  type="submit">
                   Register
                 </MDBBtn>
               </div>

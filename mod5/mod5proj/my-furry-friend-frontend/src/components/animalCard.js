@@ -85,7 +85,8 @@ const AnimalCard= (props) => {
     </div>
         :
       /*show cancel only on adopted animals*/
-        <Button onClick={() => handleClick(props.animal)}>
+        <Button onClick={() => handleClick(props.animal)}
+          basic color="red">
         <Icon name="remove" />
           Cancel Adoption
       </Button> }

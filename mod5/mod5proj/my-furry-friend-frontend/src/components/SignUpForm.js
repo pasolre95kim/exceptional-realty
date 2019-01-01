@@ -17,7 +17,6 @@ class SignUpForm extends Component {
   }
 
   postUser = (data) => {
-    debugger
     fetch(usersURL, {
       method: "POST",
       headers: {
@@ -66,7 +65,8 @@ class SignUpForm extends Component {
             <MDBCardBody>
               <MDBCardHeader className="form-header warm-flame-gradient rounded">
                 <h3 className="my-3">
-                  <MDBIcon icon="lock" /> Sign Up
+                  <MDBIcon icon="lock" />
+                   Sign Up
                 </h3>
               </MDBCardHeader>
               <label
@@ -113,7 +113,8 @@ class SignUpForm extends Component {
               />
 
               <div className="text-center mt-4">
-                <MDBBtn onClick={this.handleSubmit} color="deep-orange" className="mb-3" type="submit" >
+                <MDBBtn onClick={this.handleSubmit}
+                  color="warning" outline type="submit" >
                   Make Account
                 </MDBBtn>
               </div>
