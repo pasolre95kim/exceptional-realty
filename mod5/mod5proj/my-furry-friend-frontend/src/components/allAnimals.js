@@ -32,6 +32,7 @@ const AllAnimals = (props) => {
           admin={props.admin}
           allAnimals={props.allAnimals}
           deleteFromAll={props.deleteFromAll}
+          addNewAnimal={props.addNewAnimal}
         />
       )}
       </div>

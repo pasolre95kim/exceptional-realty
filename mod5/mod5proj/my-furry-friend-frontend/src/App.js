@@ -91,6 +91,13 @@ class App extends Component {
     })
   }
 
+//ADDING FROM NEW ANIMAL FORM
+  addNewAnimal = (animal) => {
+    this.setState({
+      allAnimals: [animal, ...this.state.allAnimals]
+    })
+  }
+
 //DELETING FROM ADOPTED ANIMALS FOR USERS
   deleteAnimal = (newArray) => {
     this.setState({
@@ -213,7 +220,8 @@ class App extends Component {
         } />
 
       <Route path='/newAnimalForm' component={AddAnimalForm}
-        user={this.state.currentUser}/>
+        user={this.state.currentUser}
+        addNewAnimal={this.addNewAnimal}/>
 
       <Route path='/adopt' render={()=> {
         return <AllAnimals

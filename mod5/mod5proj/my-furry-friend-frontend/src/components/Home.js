@@ -11,7 +11,7 @@ const Home = (props) => {
     <MDBContainer>
        <MDBCarousel
          activeItem={1}
-         length={3}
+         length={4}
          showControls={true}
          showIndicators={true}
          className="z-depth-1">
@@ -27,6 +27,7 @@ const Home = (props) => {
                <MDBMask overlay="black-light" />
              </MDBView>
            </MDBCarouselItem>
+
            <MDBCarouselItem itemId="2">
              <MDBView>
                <img
@@ -44,10 +45,19 @@ const Home = (props) => {
                  src="https://i2-prod.mirror.co.uk/incoming/article2106793.ece/ALTERNATES/s1200/Fluffy-White-dog.jpg"
                  alt="Third slide"
                />
-               <MDBMask overlay="black-slight" />
+           </MDBView>
+         </MDBCarouselItem>
 
-             </MDBView>
-           </MDBCarouselItem>
+             <MDBCarouselItem itemId="4">
+               <MDBView>
+                 <img
+                   style={{height:"30%"}}
+                   className="d-block w-100"
+                   src="https://www.pixelstalk.net/wp-content/uploads/2016/07/Cute-Baby-Animal-Background-Free-Download.jpg"
+                   alt="Fourth slide"/>
+               </MDBView>
+             </MDBCarouselItem>
+
          </MDBCarouselInner>
        </MDBCarousel>
      </MDBContainer>

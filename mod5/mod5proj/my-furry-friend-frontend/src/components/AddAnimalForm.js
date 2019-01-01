@@ -11,8 +11,8 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 const animalsURL = "http://localhost:3000/animals"
 
 class AddAnimalForm extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state={
       name:"",
       adoptionFee: "",
@@ -54,7 +54,8 @@ class AddAnimalForm extends Component {
       body: JSON.stringify(data)
     })
     .then(resp => resp.json())
-    .then(data => console.log(data))
+    .then(data =>
+      ()=> this.props.addNewAnimal(data))
   }
 
   render() {
