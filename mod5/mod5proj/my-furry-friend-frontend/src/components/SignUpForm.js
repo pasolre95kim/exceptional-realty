@@ -5,6 +5,8 @@ import "font-awesome/css/font-awesome.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import 'react-inputs-validation/lib/react-inputs-validation.min.css';
+import background from '../imgs/backgroundpic.png'
+
 
 const usersURL = "http://localhost:3000/users"
 
@@ -57,9 +59,12 @@ class SignUpForm extends Component {
 
   render() {
   return (
+<div>
   <form onSubmit={this.handleSubmit}>
+    <br />
+    <br />
     <MDBContainer className="text-center"
-      style={{width: "30%"}}>
+      style={{width: "40%"}}>
         <MDBCol>
           <MDBCard>
             <MDBCardBody>
@@ -125,6 +130,11 @@ class SignUpForm extends Component {
 
     </MDBContainer>
   </form>
+  <br />
+  <div>
+    <img class="ui fluid image" src = {background}/>
+  </div>
+  </div>
     );
   };
 }

@@ -1,6 +1,7 @@
 
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import background from '../imgs/backgroundpic.png'
 
 //Check how to add backgroun image!
 // <img src="https://www.pixelstalk.net/wp-content/uploads/2016/07/Cute-Baby-Animal-Background-Download-Free.jpg" />
@@ -60,11 +61,13 @@ class AddAnimalForm extends Component {
 
   render() {
     return (
-    <div>
+    <Fragment>
       <MDBContainer
         className="text-center"
-        style={{width: "30%"}}
+        style={{width: "40%"}}
         >
+        <img class="ui fluid image"
+          src = {background}/>
         <MDBRow >
           <MDBCol>
             <form  onSubmit={this.handleSubmit}>
@@ -95,7 +98,6 @@ class AddAnimalForm extends Component {
                 required
               />
 
-
                 <label name="name" className="grey-text">
                   Picture
                 </label>
@@ -108,7 +110,6 @@ class AddAnimalForm extends Component {
                   placeholder="Picture..."
                   required
                 />
-
 
               <label name="name" className="grey-text">
                   Health
@@ -123,7 +124,6 @@ class AddAnimalForm extends Component {
                   required
                 />
 
-
               <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
                 Age
               </label>
@@ -136,7 +136,6 @@ class AddAnimalForm extends Component {
                 placeholder="Age..."
                 required
               />
-
 
               <label
                 className="grey-text"
@@ -152,7 +151,6 @@ class AddAnimalForm extends Component {
                 placeholder="Breed..."
                 required
               />
-
 
               <label
                 className="grey-text"
@@ -184,7 +182,6 @@ class AddAnimalForm extends Component {
                 required
               />
 
-
               <div className="text-center mt-4">
                 <MDBBtn color="warning" outline
                   type="submit">
@@ -195,9 +192,10 @@ class AddAnimalForm extends Component {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+
       <br />
       <br />
-      </div>
+      </Fragment>
 
     );
   };

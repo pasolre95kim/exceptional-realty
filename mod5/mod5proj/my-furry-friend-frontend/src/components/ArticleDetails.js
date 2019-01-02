@@ -13,6 +13,8 @@ const ArticleDetails = ({article}) => {
         {article.title}
         </div>
 
+        <img class="ui centered medium image" src={article.image} />
+        <br />
         <h4 style={{textAlign:"left"}}>
         {article.abstract}
         </h4>
@@ -35,7 +37,7 @@ const ArticleDetails = ({article}) => {
        <br />
        <br />
       </div>
-      
+
     ) : null
   }
 

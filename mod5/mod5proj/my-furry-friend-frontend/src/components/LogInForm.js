@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import SignUpForm from './SignUpForm'
 import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
+import background from '../imgs/backgroundpic.png'
+
 
 const logInURL="http://localhost:3000/login"
 
@@ -44,7 +46,7 @@ handleSubmit = event => {
   render(){
     return(
 <div>
-  <br />
+
 <div style={{textAlign: "center"}}>
 
   <h3>Please Log In/Sign Up To Proceed</h3>
@@ -76,10 +78,9 @@ handleSubmit = event => {
     <Divider vertical>Or</Divider>
   </Segment>
 </div>
-  <br />
-  <br />
-  <br />
-  <br />
+<img class="ui fluid image"
+  src = {background}
+  style={{size: "70%"}}/>
 </div>
     )
   }
