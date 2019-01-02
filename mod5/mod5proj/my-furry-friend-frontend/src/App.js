@@ -240,9 +240,11 @@ class App extends Component {
               updateCurrentUser={this.updateCurrentUser}/>
         } />
 
-      <Route path='/newAnimalForm' component={AddAnimalForm}
-        user={this.state.currentUser}
-        addNewAnimal={this.addNewAnimal}/>
+      <Route path='/newAnimalForm' render={() =>
+          <AddAnimalForm
+          user={this.state.currentUser}
+          addNewAnimal={this.addNewAnimal} />
+      }/>
 
       <Route path='/adopt' render={()=> {
         return <AllAnimals

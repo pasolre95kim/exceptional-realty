@@ -43,7 +43,7 @@ const AnimalCard= (props) => {
     .then(resp => resp.json())
     .then(data => {
       console.log("deleted", animal, "from allanimals")
-      alert(`${props.animal} has been deleted`)
+      alert( "deleted" ,data.name)
       props.deleteFromAll(newArray)
     })
   }

@@ -2,6 +2,8 @@
 import React, {Component, Fragment} from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 import background from '../imgs/backgroundpic.png'
+import {Link} from 'react-router-dom'
+
 
 //Check how to add backgroun image!
 // <img src="https://www.pixelstalk.net/wp-content/uploads/2016/07/Cute-Baby-Animal-Background-Download-Free.jpg" />
@@ -34,8 +36,8 @@ class AddAnimalForm extends Component {
   }
 
   handleSubmit = event => {
-    event.preventDefault()
 
+    event.preventDefault()
     let data = {
       name: this.state.name,
       age: this.state.age,
@@ -55,8 +57,10 @@ class AddAnimalForm extends Component {
       body: JSON.stringify(data)
     })
     .then(resp => resp.json())
-    .then(data =>
-      ()=> this.props.addNewAnimal(data))
+    .then(data => {
+      this.props.addNewAnimal(data)
+      console.log(data)
+    })
   }
 
   render() {
@@ -187,6 +191,7 @@ class AddAnimalForm extends Component {
                   type="submit">
                   Register
                 </MDBBtn>
+
               </div>
             </form>
           </MDBCol>
