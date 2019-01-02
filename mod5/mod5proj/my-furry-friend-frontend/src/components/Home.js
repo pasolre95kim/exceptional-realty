@@ -3,7 +3,9 @@ import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask, MDBCo
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
+import {Header, Container, Icon, Button } from 'semantic-ui-react'
+
 
 const Home = (props) => {
 
@@ -65,15 +67,36 @@ const Home = (props) => {
          </MDBCarouselInner>
        </MDBCarousel>
      </MDBContainer>
+    <br />
+    <h2 />
 
-  <blockquote className="blockquote bq-success">
-  <p className="bq-title">Success notification</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quibusdam dignissimos itaque harum illo!
-    Quidem, corporis at quae tempore nisi impedit cupiditate perferendis nesciunt, ex dolores doloremque!
-    Sit, rem, in?
+  <Container text>
+    <div class="ui huge  header">
+      Welcome to My Furry Friends!
+    </div>
+    <br />
+    <br />
+
+  <h3>
+    <Icon name="paw" />
+    Adopt the love of your life
+  </h3>
+  <p></p>
+  <p>Ready to add a new love to your family?
+   There are so many wonderful pets in your community waiting for loving homes.
+    Put your love into action by adopting today - and spread the word that adoption is the way to go.
   </p>
-</blockquote>
+  <h2 />
+  <Button basic color="brown"
+    as={Link} to="/adopt">
+    Adopt at My Furry Friends
+  </Button>
+  </Container>
+  <br />
+  <br />
+
 </div>
+
 
 
 

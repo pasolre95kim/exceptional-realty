@@ -25,6 +25,8 @@ const AdoptedAnimals = (props) => {
          />
       )}
       </div>
+      <br />
+      <br />
     </div>
     )  : <Redirect to="/login" />
   }

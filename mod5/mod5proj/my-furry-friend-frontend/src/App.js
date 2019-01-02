@@ -264,6 +264,18 @@ class App extends Component {
         }} />
 
       </Switch>
+
+      <div class="ui yellow segments">
+      </div>
+      <br />
+      <div>
+        Signing in at My Furry Friends means you acknowledge to our Terms and Conditions of Use and Privacy Policy.
+      </div>
+      <br />
+      <p>
+        © 2019
+      </p>
+      <br />
     </div>
     );
   }

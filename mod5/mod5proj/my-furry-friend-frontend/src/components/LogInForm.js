@@ -43,8 +43,11 @@ handleSubmit = event => {
 
   render(){
     return(
+<div>
+  <br />
 <div style={{textAlign: "center"}}>
-  Please Log In/Sign Up To Proceed
+
+  <h3>Please Log In/Sign Up To Proceed</h3>
   <Segment placeholder>
     <Grid columns={2} relaxed='very' stackable>
       <Grid.Column>
@@ -53,6 +56,7 @@ handleSubmit = event => {
           <Form.Input icon='lock' iconPosition='left' label='Password' type='password' name="password" onChange={this.onChange} />
 
           <Button content='Login' primary
+            
             onClick={this.handleSubmit}
             />
         </Form>
@@ -67,6 +71,11 @@ handleSubmit = event => {
 
     <Divider vertical>Or</Divider>
   </Segment>
+</div>
+  <br />
+  <br />
+  <br />
+  <br />
 </div>
     )
   }

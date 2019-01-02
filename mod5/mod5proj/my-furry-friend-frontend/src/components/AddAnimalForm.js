@@ -60,7 +60,7 @@ class AddAnimalForm extends Component {
 
   render() {
     return (
-
+    <div>
       <MDBContainer
         className="text-center"
         style={{width: "30%"}}
@@ -195,6 +195,9 @@ class AddAnimalForm extends Component {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+      <br />
+      <br />
+      </div>
 
     );
   };
