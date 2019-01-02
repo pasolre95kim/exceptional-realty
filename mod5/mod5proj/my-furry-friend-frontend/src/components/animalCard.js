@@ -51,7 +51,7 @@ const AnimalCard= (props) => {
   return (
     <Card>
       <Image src={props.animal.image} />
-        <Card.Content>
+        <Card.Content style={{textAlign: "left"}}>
           <Card.Header>Name: {props.animal.name}</Card.Header>
           <Card.Meta>{props.animal.type}</Card.Meta>
           <Card.Meta>Age: {props.animal.age}</Card.Meta>
@@ -78,6 +78,7 @@ const AnimalCard= (props) => {
       {/* if user is admin in the all animals page, show delete button */}
       {props.admin ?
       <Button basic color="red"
+        style={{textAlign: "center"}}
          onClick={() => deleteAnimal(props.animal)}>
         <Icon name="remove" />
         Delete
@@ -87,6 +88,7 @@ const AnimalCard= (props) => {
       /*show cancel only on adopted animals*/
         <Button onClick={() => handleClick(props.animal)}
           basic color="red">
+
         <Icon name="remove" />
           Cancel Adoption
       </Button> }

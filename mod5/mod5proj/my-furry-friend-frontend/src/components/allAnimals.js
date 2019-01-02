@@ -19,8 +19,8 @@ const AllAnimals = (props) => {
       Our Furry Friends
     </h2>
     <br></br>
-      <div className = "ui four column grid cards"
-        style={{textAlign: "left"}}>
+      <div className = "ui four column grid cards">
+
         {filteredAnimals.map(animal=> <AnimalCard
           key={animal.id}
           animal={animal}

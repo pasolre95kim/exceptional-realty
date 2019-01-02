@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import {Icon} from 'semantic-ui-react'
-import Articles from './Articles'
+import Article from './Article'
 
 
 const AllArticles = (props) => {
@@ -14,7 +14,7 @@ const AllArticles = (props) => {
     </h2>
       <br />
       <div>
-      {props.allArticles.map(article => <Articles
+      {props.allArticles.map(article => <Article
         article={article}
         user={props.user}
         key= {article.id}/> )}

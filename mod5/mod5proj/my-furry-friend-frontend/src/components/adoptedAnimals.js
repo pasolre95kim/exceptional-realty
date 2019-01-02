@@ -14,6 +14,7 @@ const AdoptedAnimals = (props) => {
           Your Pending Adoptions </h2>
         <br></br>
         <div className="ui three column grid cards">
+
       {props.adoptedAnimals.map(animal => <AnimalCard
         key={animal.animal.id}
         animal = {animal.animal}

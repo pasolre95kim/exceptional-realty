@@ -10,7 +10,7 @@ import AdoptedAnimals from './components/AdoptedAnimals'
 import AddAnimalForm from './components/AddAnimalForm'
 import ArticleDetails from './components/ArticleDetails'
 import AllArticles from './components/AllArticles'
-import Articles from './components/Articles'
+import Article from './components/Article'
 
 
 const articlesURL = "http://localhost:3000/articles"
@@ -154,19 +154,22 @@ class App extends Component {
     this.setState({searchTerm: event.target.value})
   }
 
-
+//Finding article Id for Article Details Page
+//Route for ARticle Details on line 222
   findArticle = (id) => {
     let article = this.state.allArticles.find(a => a.id === parseInt(id))
     return article
   }
-  // {JSON.parse(localStorage.getItem("user")).username}
 
   render() {
     return (
       <div className="App">
 
-      <Header as='h2' icon textAlign='center'>
-        <img src="https://i.etsystatic.com/14984992/r/il/2120fc/1560256262/il_570xN.1560256262_eaom.jpg" className="ui circular image"/>
+      <Header as='h1' icon textAlign='center'
+        as={Link} to="/"
+        style={{fontSize:"170%"}}>
+        <img src="https://i.etsystatic.com/14984992/r/il/2120fc/1560256262/il_570xN.1560256262_eaom.jpg"
+          className="ui circular image" />
         My Furry Friends
         <Header.Subheader>
          Your Life long friends
@@ -255,7 +258,7 @@ class App extends Component {
         }} />
 
       <Route path="/articles" render={()=>  {
-          return <Articles
+          return <Article
             allArticles={this.state.allArticles} />
         }} />
 

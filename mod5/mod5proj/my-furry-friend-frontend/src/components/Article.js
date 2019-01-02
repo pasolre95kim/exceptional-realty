@@ -3,7 +3,7 @@ import {Header, Image, Segment, Button, Icon, Container } from 'semantic-ui-reac
 import {Link, Redirect} from 'react-router-dom'
 
 
-const Articles = (props) => {
+const Article = (props) => {
 
   return props.user ? (
   <div>
@@ -30,7 +30,7 @@ const Articles = (props) => {
   ) : <Redirect to="/login" />
 }
 
-export default Articles
+export default Article
 
 
 

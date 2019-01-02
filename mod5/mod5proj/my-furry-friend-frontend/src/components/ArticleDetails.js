@@ -22,6 +22,7 @@ const ArticleDetails = ({article}) => {
         <p style={{textAlign:"left"}}>
         {article.body}
         </p>
+
       </Container>
       <br />
       <br />
@@ -34,6 +35,7 @@ const ArticleDetails = ({article}) => {
        <br />
        <br />
       </div>
+      
     ) : null
   }
 
