@@ -16,7 +16,7 @@ const Articles = (props) => {
          {props.article.abstract}
          <br />
          <Link to={`/articles/${props.article.id}`}
-           article={props.article.id}
+           article={props.article}
            style={{color:"#FA8072"}}>
            <Icon name="heart" />
            Read More

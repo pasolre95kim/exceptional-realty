@@ -44,13 +44,18 @@ class App extends Component {
           allAnimals: animals
         })
       )
+      this.fetchArticles()
+  }
+
+
+ fetchArticles =() => {
     fetch(articlesURL)
     .then(resp => resp.json())
     .then(articles => {
       console.log(articles)
       this.setState({
         allArticles: articles
-    })
+      })
     }
    )
   }
@@ -149,6 +154,11 @@ class App extends Component {
     this.setState({searchTerm: event.target.value})
   }
 
+
+  findArticle = (id) => {
+    let article = this.state.allArticles.find(a => a.id === parseInt(id))
+    return article
+  }
   // {JSON.parse(localStorage.getItem("user")).username}
 
   render() {
@@ -208,12 +218,11 @@ class App extends Component {
             user={this.state.currentUser}/>
         }} />
 
-
-
       <Route path='/articles/:id' render={(props)=> {
         let articleId = props.match.params.id
-        let article = this.state.allArticles.find(a => a.id === articleId)
-        return <ArticleDetails article={article} />
+        let findArticle = this.findArticle(articleId)
+
+        return <ArticleDetails article={findArticle} />
         }} />
 
       <Route path='/signup' render={() =>

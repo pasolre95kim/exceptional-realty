@@ -1,22 +1,38 @@
 import React, { Fragment } from 'react';
-import { Header, Icon, Image, Container } from 'semantic-ui-react'
+import { Header, Icon, Image, Container, Button } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 const ArticleDetails = ({article}) => {
+
     return article ? (
       <div>
-      <Container text>
-        <Header>
-        {article.title}
-        </Header>
-        <h3>
-        {article.abstract}
-        </h3>
       <br />
-        <p>
+      <Container text>
+
+        <div class="ui huge header">
+        {article.title}
+        </div>
+
+        <h4 style={{textAlign:"left"}}>
+        {article.abstract}
+        </h4>
+
+      <br />
+
+        <p style={{textAlign:"left"}}>
         {article.body}
         </p>
       </Container>
+      <br />
+      <br />
 
+      <Button basic color="brown"
+       as={Link} to="/allArticles">
+       Back to Articles
+       </Button>
+
+       <br />
+       <br />
       </div>
     ) : null
   }
