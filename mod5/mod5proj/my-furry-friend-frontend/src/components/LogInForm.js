@@ -45,20 +45,19 @@ handleSubmit = event => {
 
   render(){
     return(
-<div>
 
-<div style={{textAlign: "center"}}>
+<div>
+  <div style={{textAlign: "center"}}>
 
   <h3>Please Log In/Sign Up To Proceed</h3>
   <Segment placeholder>
     <Grid columns={2} relaxed='very' stackable>
-      <Grid.Column>
-        <Form onSubmit={this.loginFetch} >
-          <Form.Input icon='user' iconPosition='left' label='Username'  placeholder='Username' name="username" onChange={this.onChange} />
-          <Form.Input icon='lock' iconPosition='left' label='Password' type='password' name="password" onChange={this.onChange} />
+    <Grid.Column>
+      <Form onSubmit={this.loginFetch} >
+        <Form.Input icon='user' iconPosition='left' label='Username'  placeholder='Username' name="username" onChange={this.onChange} />
+        <Form.Input icon='lock' iconPosition='left' label='Password' type='password' name="password" onChange={this.onChange} />
 
-          <Button
-            basic color="brown"
+          <Button  basic color="brown"
             onClick={this.handleSubmit}>
             Log In
           </Button>
@@ -76,11 +75,11 @@ handleSubmit = event => {
     </Grid>
 
     <Divider vertical>Or</Divider>
-  </Segment>
+  </Segment>``
 </div>
-<img class="ui fluid image"
-  src = {background}
-  style={{size: "70%"}}/>
+  <img className="ui fluid image"
+    src = {background}
+    style={{size: "70%"}}/>
 </div>
     )
   }

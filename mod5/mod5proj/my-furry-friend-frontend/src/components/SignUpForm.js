@@ -30,7 +30,7 @@ class SignUpForm extends Component {
     .then(resp => resp.json())
     .then(data => {
       console.log(data)
-      
+
       this.props.updateCurrentUser(data.user, data.user.adoptions)
       localStorage.setItem("token", data.jwt)
       localStorage.setItem("user", JSON.stringify(data.user))
@@ -67,14 +67,14 @@ class SignUpForm extends Component {
     <MDBContainer className="text-center"
       style={{width: "40%"}}>
         <MDBCol>
-          <MDBCard>
-            <MDBCardBody>
-              <MDBCardHeader className="form-header warm-flame-gradient rounded">
-                <h3 className="my-3">
-                  <MDBIcon icon="lock" />
-                   Sign Up
-                </h3>
-              </MDBCardHeader>
+        <MDBCard>
+          <MDBCardBody>
+            <MDBCardHeader className="form-header warm-flame-gradient rounded">
+              <h3 className="my-3">
+                <MDBIcon icon="lock" />
+                Sign Up
+              </h3>
+            </MDBCardHeader>
               <label
                 htmlFor="defaultFormEmailEx"
                 className="grey-text font-weight-light"
@@ -128,7 +128,6 @@ class SignUpForm extends Component {
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
-
     </MDBContainer>
   </form>
   <br />
