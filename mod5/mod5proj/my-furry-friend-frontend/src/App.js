@@ -100,7 +100,7 @@ class App extends Component {
 //ADDING FROM NEW ANIMAL FORM
   addNewAnimal = (animal) => {
     this.setState({
-      allAnimals: [animal, ...this.state.allAnimals]
+      allAnimals: [...this.state.allAnimals, animal]
     })
   }
 
@@ -243,10 +243,11 @@ class App extends Component {
               updateCurrentUser={this.updateCurrentUser}/>
         } />
 
-      <Route path='/newAnimalForm' render={() =>
-          <AddAnimalForm
+      <Route path='/newAnimalForm' render={() => this.state.currentAnimal ? <Redirect to='/adopt' />
+      : <AddAnimalForm
           user={this.state.currentUser}
-          addNewAnimal={this.addNewAnimal} />
+          addNewAnimal={this.addNewAnimal}
+          setCurrentAnimal={this.setCurrentAnimal} />
       }/>
 
       <Route path='/adopt' render={()=> {

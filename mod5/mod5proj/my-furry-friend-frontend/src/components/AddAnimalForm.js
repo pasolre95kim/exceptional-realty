@@ -59,6 +59,7 @@ class AddAnimalForm extends Component {
     .then(resp => resp.json())
     .then(data => {
       this.props.addNewAnimal(data)
+      this.props.setCurrentAnimal(data)
       console.log(data)
     })
   }
