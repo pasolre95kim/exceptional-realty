@@ -29,15 +29,16 @@ class SignUpForm extends Component {
     })
     .then(resp => resp.json())
     .then(data => {
-      this.props.updateCurrentUser(data.user)
+      console.log(data)
+      
+      this.props.updateCurrentUser(data.user, data.user.adoptions)
       localStorage.setItem("token", data.jwt)
       localStorage.setItem("user", JSON.stringify(data.user))
-      console.log(data)
   })
 }
 
-  handleSubmit =() => {
-
+  handleSubmit =(event) => {
+    event.preventDefault()
     if( this.state.password === this.state.confirm_password) {
       let data = {user:{
         username: this.state.username,

@@ -221,17 +221,20 @@ class App extends Component {
             user={this.state.currentUser}/>
         }} />
 
+
       <Route path='/articles/:id' render={(props)=> {
-        let articleId = props.match.params.id
-        let findArticle = this.findArticle(articleId)
+          let articleId = props.match.params.id
+          let findArticle = this.findArticle(articleId)
+          if (this.state.currentUser) {
+            return <ArticleDetails article={findArticle} user={this.state.currentUser}/>
+            } else {
+            return <Redirect to='/login'/>
+            }
+      }}/>
 
-        return <ArticleDetails article={findArticle} />
-        }} />
 
-      <Route path='/signup' render={() =>
-          this.props.currentUser ? <Redirect to='/adopt' /> : <SignUpForm
-          updateCurrentUser={this.updateCurrentUser}/>
-          } />
+    <Route path='/signup' render={() => this.state.currentUser ? <Redirect to='/adopt' />
+    : <SignUpForm updateCurrentUser={this.updateCurrentUser}/> } />
 
       <Route path='/login' render={()=>
           this.state.currentUser ? <Redirect to="/adopt" /> :
