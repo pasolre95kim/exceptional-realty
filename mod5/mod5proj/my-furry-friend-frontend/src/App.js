@@ -196,7 +196,7 @@ class App extends Component {
       </div>
       </div>
 
-      <div class="ui yellow segments">
+      <div className="ui yellow segments">
       </div>
 
     <Switch>
@@ -265,7 +265,7 @@ class App extends Component {
 
       </Switch>
 
-      <div class="ui yellow segments">
+      <div className="ui yellow segments">
       </div>
       <br />
       <div>

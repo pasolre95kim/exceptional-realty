@@ -77,27 +77,65 @@ const Home = (props) => {
     <br />
     <br />
 
+  <Container text>
+    <h3>
+      <Icon name="paw" />
+      Our Goals
+    </h3>
+    <br />
+    <p>Shelters don’t have the money or room to care for them.
+      They already have 5 million strays and abused animals to take in each year.
+      And so, millions are euthanized.</p>
+    <p>We are determined that things don’t have to be this way. Not in our 21st century, web-connected world.
+      So we created Get Your Pet, an online community where people who can’t keep their pets connect directly with people who want to adopt a pet.
+    </p>
+    <p>Together, we’ll keep dogs and cats from ever seeing the inside of a shelter, so they can love and be loved in new homes.
+      Saving lives. Unburdening shelters. Creating community to make a difference. That’s our mission.
+      That’s what we want you to know about us.</p>
+    <br />
+  </Container >
+
+    <br />
+    <br />
+
   <h3>
     <Icon name="paw" />
     Adopt the love of your life
   </h3>
   <p></p>
-  <p>Ready to add a new love to your family?
+  <p textalign="left">Ready to add a new love to your family?
    There are so many wonderful pets in your community waiting for loving homes.
-    Put your love into action by adopting today - and spread the word that adoption is the way to go.
+   Put your love into action by adopting today - and spread the word that adoption is the way to go.
   </p>
-  <h2 />
+
+  <br />
   <Button basic color="brown"
     as={Link} to="/adopt">
     Adopt at My Furry Friends
   </Button>
   </Container>
+
   <br />
   <br />
 
+  <Container text>
+    <h3>
+      <Icon name="paw" />
+      View Our Resources
+    </h3>
+    <br />
+    <p>Don't Miss Out On Our Great Resources</p>
+    <br />
+    <Button basic color="brown"
+      as={Link} to="/allArticles">
+      View Our Articles For More Information
+    </Button>
+    <br />
+    <br />
+  </Container>
+
+  <br />
 </div>
-
-
 
 
   )

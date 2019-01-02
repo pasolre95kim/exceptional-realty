@@ -26,7 +26,6 @@ const Articles = (props) => {
 
      <br />
      <br />
-
     </div>
   ) : <Redirect to="/login" />
 }

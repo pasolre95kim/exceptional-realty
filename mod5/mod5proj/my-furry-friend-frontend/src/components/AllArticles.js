@@ -19,6 +19,8 @@ const AllArticles = (props) => {
         user={props.user}
         key= {article.id}/> )}
       </div>
+      <br />
+      <br />
       </div>
   ) : <Redirect to="/login" />
 }
