@@ -135,7 +135,8 @@ render() {
             fluid
             name='Vet'
             label='Veterinary Hospital'
-            placeholder='Veterinary Hospital...'/>
+            placeholder='Veterinary Hospital...'
+            required />
 
           <div className="ui left pointing red basic label">
           This Field Is Mandatory

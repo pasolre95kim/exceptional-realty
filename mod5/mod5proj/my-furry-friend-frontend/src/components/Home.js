@@ -8,6 +8,10 @@ import {Redirect} from 'react-router-dom'
 const Home = (props) => {
 
   return (
+    <div>
+      <br />
+      <br />
+      <br />
     <MDBContainer>
        <MDBCarousel
          activeItem={1}
@@ -61,6 +65,18 @@ const Home = (props) => {
          </MDBCarouselInner>
        </MDBCarousel>
      </MDBContainer>
+
+  <blockquote className="blockquote bq-success">
+  <p className="bq-title">Success notification</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quibusdam dignissimos itaque harum illo!
+    Quidem, corporis at quae tempore nisi impedit cupiditate perferendis nesciunt, ex dolores doloremque!
+    Sit, rem, in?
+  </p>
+</blockquote>
+</div>
+
+
+
   )
 }
 export default Home

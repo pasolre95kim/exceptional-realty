@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Header, Icon, Menu } from 'semantic-ui-react'
 import {Route, Link, Switch, Redirect, withRouter} from 'react-router-dom'
 import AllAnimals from './components/AllAnimals'
+import './App.css';
 import Home from './components/Home'
 import LogInForm from './components/LogInForm'
 import SignUpForm from './components/SignUpForm'
@@ -161,9 +162,11 @@ class App extends Component {
          Your Life long friends
         </Header.Subheader>
       </Header>
-      <div className="ui secondary menu">
+      <div className="ui secondary menu"
+        style={{fontSize: "130%"}}
+        color="brown">
         <Link to='/' className="item">Home</Link>
-        <Link to='/adopt' className="item">Adopt</Link>
+        <Link to='/adopt' className="item" >Adopt</Link>
         <Link to='/myadoption' className="item">My Adoptions</Link>
         <Link to='/allArticles' className="item">Resources</Link>
         {this.state.admin ?
@@ -182,12 +185,18 @@ class App extends Component {
 
       {this.state.currentUser ? (
         <Fragment>
-        <Menu.Item onClick={this.logOut} className="item" name="Sign Out" />
+        <Menu.Item onClick={this.logOut}
+          className="item"
+          name="Sign Out" />
 
         </Fragment>)
-        :   (<Menu.Item as={Link} to="/login" name= "Login" /> )}
+        :   (<Menu.Item as={Link} to="/login"
+              name= "Login"/> )}
 
       </div>
+      </div>
+
+      <div class="ui yellow segments">
       </div>
 
     <Switch>
