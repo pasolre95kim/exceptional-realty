@@ -55,15 +55,19 @@ handleSubmit = event => {
           <Form.Input icon='user' iconPosition='left' label='Username'  placeholder='Username' name="username" onChange={this.onChange} />
           <Form.Input icon='lock' iconPosition='left' label='Password' type='password' name="password" onChange={this.onChange} />
 
-          <Button content='Login' primary
-            
-            onClick={this.handleSubmit}
-            />
+          <Button
+            basic color="brown"
+            onClick={this.handleSubmit}>
+            Log In
+          </Button>
         </Form>
       </Grid.Column>
 
       <Grid.Column verticalAlign='middle'>
-        <Button as={Link} to="/signup" primarycontent='Sign up'size='big'>
+        <Button
+          as={Link} to="/signup"
+          size='big'
+          basic color="brown">
         Sign Up
         </Button>
       </Grid.Column>
