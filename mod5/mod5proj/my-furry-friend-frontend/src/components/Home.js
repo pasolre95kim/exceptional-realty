@@ -27,10 +27,8 @@ const Home = (props) => {
              <MDBView>
                <img
                  className="d-block w-100"
-                 src="https://d17fnq9dkz9hgj.cloudfront.net/uploads/2018/03/Russian-Blue_01.jpg"
-                 alt="First slide"
-               />
-               <MDBMask overlay="black-light" />
+                 src="https://i.ytimg.com/vi/bfN60awmfYk/maxresdefault.jpg"
+                 alt="First slide" />
              </MDBView>
            </MDBCarouselItem>
 
@@ -38,10 +36,8 @@ const Home = (props) => {
              <MDBView>
                <img
                  className="d-block w-100"
-                 src="https://i.ytimg.com/vi/bfN60awmfYk/maxresdefault.jpg"
-                 alt="Second slide"
-               />
-
+                 src="https://d17fnq9dkz9hgj.cloudfront.net/uploads/2018/03/Russian-Blue_01.jpg"
+                 alt="Second slide" />
              </MDBView>
            </MDBCarouselItem>
            <MDBCarouselItem itemId="3">
@@ -105,7 +101,7 @@ const Home = (props) => {
     Adopt the love of your life
   </h3>
   <p></p>
-  
+
   <p textalign="left">
    Ready to add a new love to your family?
    There are so many wonderful pets in your community waiting for loving homes.

@@ -8,12 +8,13 @@ const AllArticles = (props) => {
 
   return props.user? (
     <div>
+      <br />
     <h2 style={{textAlign:"center"}}>
     <Icon name="paw" />
     Available Resources
     </h2>
       <br />
-      <div>
+      <div style={{textAlign: "left"}}>
       {props.allArticles.map(article => <Article
         article={article}
         user={props.user}
