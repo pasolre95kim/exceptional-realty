@@ -9,7 +9,8 @@ const AllAnimals = (props) => {
   let filteredAnimals = props.allAnimals.filter((animal) => animal.breed.includes(props.filterTerm)
   || animal.name.includes(props.filterTerm)
   || animal.age.includes(props.filterTerm)
-  || animal.gender.includes(props.filterTerm))
+  || animal.gender.includes(props.filterTerm)
+  || animal.species ? animal.species.includes(props.filterTerm) : null)
 
   return user ? (
     <div>

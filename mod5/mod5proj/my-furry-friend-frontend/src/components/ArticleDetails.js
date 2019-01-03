@@ -3,7 +3,7 @@ import { Header, Icon, Image, Container, Button } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 const ArticleDetails = (props) => {
-
+    
     return props.article || props.user ? (
       <div>
       <br />

@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { Card, Button, Icon, Image } from 'semantic-ui-react'
 import AdoptionForm from './AdoptionForm'
+import {Link} from 'react-router-dom'
+
 
 
 const AnimalCard= (props) => {
@@ -49,19 +51,12 @@ const AnimalCard= (props) => {
   }
 
   return (
-    <Card>
+    <Card as={Link} to={`/adopt/${props.animal.id}`}>
       <Image src={props.animal.image} />
         <Card.Content style={{textAlign: "left"}}>
           <Card.Header>Name: {props.animal.name}</Card.Header>
-          <Card.Meta>{props.animal.type}</Card.Meta>
+          <Card.Meta>Type: {props.animal.species}</Card.Meta>
           <Card.Meta>Age: {props.animal.age}</Card.Meta>
-          <Card.Meta>Gender: {props.animal.gender}</Card.Meta>
-          <Card.Meta>Breed: {props.animal.breed}</Card.Meta>
-              {props.animal.about ?
-            <Card.Description>{props.animal.about}</Card.Description> : null}
-              {props.animal.health ?
-            <Card.Description>Health: {props.animal.health}</Card.Description> : null}
-            <Card.Description>{props.animal.preferredHome}</Card.Description>
             <Card.Description>Adoption Fee: {props.animal.adoptionFee}</Card.Description>
         </Card.Content>
       <Card.Content extra>

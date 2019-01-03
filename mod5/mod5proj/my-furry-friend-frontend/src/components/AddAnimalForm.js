@@ -24,7 +24,8 @@ class AddAnimalForm extends Component {
       breed: "",
       age: "",
       gender: "",
-      preferredHome: ""
+      preferredHome: "",
+      species: ""
     }
   }
 
@@ -46,7 +47,8 @@ class AddAnimalForm extends Component {
       image: this.state.image,
       breed: this.state.breed,
       health: this.state.health,
-      preferredHome: this.state.preferredHome
+      preferredHome: this.state.preferredHome,
+      species: this.state.species
     }
     fetch(animalsURL, {
       method: "POST",
@@ -77,6 +79,7 @@ class AddAnimalForm extends Component {
           <MDBCol>
             <form  onSubmit={this.handleSubmit}>
               <p className="h4 text-center mb-4">New Animal Form</p>
+
               <label name="name" className="grey-text">
                 Name
               </label>
@@ -90,7 +93,20 @@ class AddAnimalForm extends Component {
                 required
               />
 
-                <label name="name" className="grey-text">
+              <label className="grey-text" >
+                Type
+              </label>
+              <input
+                type="text"
+                id="defaultFormRegisterPasswordEx"
+                className="form-control"
+                name="species"
+                onChange={this.handleChange}
+                placeholder="Type..."
+                required
+              />
+
+              <label name="name" className="grey-text">
                   Adoption Fee
                 </label>
               <input
@@ -142,9 +158,7 @@ class AddAnimalForm extends Component {
                 required
               />
 
-              <label
-                className="grey-text"
-              >
+              <label className="grey-text">
               Breed
               </label>
               <input
@@ -157,9 +171,7 @@ class AddAnimalForm extends Component {
                 required
               />
 
-              <label
-                className="grey-text"
-              >
+              <label className="grey-text">
                 Gender
               </label>
               <input
@@ -172,9 +184,7 @@ class AddAnimalForm extends Component {
                 required
               />
 
-              <label
-                className="grey-text"
-              >
+              <label className="grey-text">
               Preferred Home Environment
               </label>
               <input

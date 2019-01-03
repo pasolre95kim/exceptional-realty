@@ -7,6 +7,7 @@ import Home from './components/Home'
 import LogInForm from './components/LogInForm'
 import SignUpForm from './components/SignUpForm'
 import AdoptedAnimals from './components/AdoptedAnimals'
+import AnimalDetails from './components/AnimalDetails'
 import AddAnimalForm from './components/AddAnimalForm'
 import ArticleDetails from './components/ArticleDetails'
 import AllArticles from './components/AllArticles'
@@ -155,7 +156,7 @@ class App extends Component {
   }
 
 //Finding article Id for Article Details Page
-//Route for ARticle Details on line 222
+//Route for Article Details on line 222
   findArticle = (id) => {
     let article = this.state.allArticles.find(a => a.id === parseInt(id))
     return article
@@ -212,76 +213,86 @@ class App extends Component {
       <div className="ui yellow segments">
       </div>
 
-    <Switch>
+  <Switch>
 
-      <Route path='/myadoption' render={() => {
+    <Route path='/signup' render={() => this.state.currentUser ? <Redirect to='/adopt' />
+      : <SignUpForm updateCurrentUser={this.updateCurrentUser}/> } />
+
+    <Route path='/login' render={()=>
+        this.state.currentUser ? <Redirect to="/adopt" /> :
+        <LogInForm
+          checkForToken={this.checkForToken}
+          updateCurrentUser={this.updateCurrentUser}/>
+      } />
+
+
+    <Route path='/myadoption' render={() => {
           return <AdoptedAnimals
             adoptedAnimals={this.state.adoptedAnimals}
             deleteAnimal={this.deleteAnimal}
             user={this.state.currentUser}/>
         }} />
 
-
-      <Route path='/articles/:id' render={(props)=> {
-          let articleId = props.match.params.id
-          let findArticle = this.findArticle(articleId)
+      <Route path='/adopt/:id' render={(props)=> {
+          let animalId=props.match.params.id
+          let findAnimal=this.state.allAnimals.find(a => a.id === parseInt(animalId))
           if (this.state.currentUser) {
-            return <ArticleDetails article={findArticle} user={this.state.currentUser}/>
-            } else {
+            return <AnimalDetails animal={findAnimal} user={this.state.currentUser} />
+          } else {
             return <Redirect to='/login'/>
-            }
-      }}/>
+          }
+        }}/>
 
+        <Route path='/adopt' render={()=> {
+            return <AllAnimals
+              allAnimals={this.state.allAnimals}
+              user={this.state.currentUser}
+              adoptAnimal={this.adoptAnimal}
+              currentAnimal={this.state.currentAnimal}
+              addAnimal={this.addAnimal}
+              admin={this.state.admin}
+              deleteFromAll={this.deleteFromAll}
+              filterTerm={this.state.searchTerm}
+              onSearchHandler={this.onSearchHandler}/>
+            }} />
 
-    <Route path='/signup' render={() => this.state.currentUser ? <Redirect to='/adopt' />
-    : <SignUpForm updateCurrentUser={this.updateCurrentUser}/> } />
-
-      <Route path='/login' render={()=>
-          this.state.currentUser ? <Redirect to="/adopt" /> :
-          <LogInForm
-              checkForToken={this.checkForToken}
-              updateCurrentUser={this.updateCurrentUser}/>
-        } />
-
-      <Route path='/newAnimalForm' render={() => this.state.currentAnimal ? <Redirect to='/adopt' />
+    <Route path='/newAnimalForm' render={() => this.state.currentAnimal ? <Redirect to='/adopt' />
       : <AddAnimalForm
           user={this.state.currentUser}
           addNewAnimal={this.addNewAnimal}
           setCurrentAnimal={this.setCurrentAnimal} />
       }/>
 
-      <Route path='/adopt' render={()=> {
-        return <AllAnimals
-          allAnimals={this.state.allAnimals}
-          user={this.state.currentUser}
-          adoptAnimal={this.adoptAnimal}
-          currentAnimal={this.state.currentAnimal}
-          addAnimal={this.addAnimal}
-          admin={this.state.admin}
-          deleteFromAll={this.deleteFromAll}
-          filterTerm={this.state.searchTerm}
-          onSearchHandler={this.onSearchHandler}/>
-        }} />
 
-      <Route path="/articles" render={()=>  {
+    <Route path='/articles/:id' render={(props)=> {
+        let articleId = props.match.params.id
+        let findArticle = this.findArticle(articleId)
+        if (this.state.currentUser) {
+          return <ArticleDetails article={findArticle} user={this.state.currentUser}/>
+          } else {
+          return <Redirect to='/login'/>
+          }
+    }}/>
+
+    <Route path="/articles" render={()=>  {
           return <Article
             allArticles={this.state.allArticles} />
         }} />
 
-      <Route path='/allArticles' render={() => {
-          return <AllArticles
-            allArticles={this.state.allArticles}
-            user={this.state.currentUser}/>
-        }} />
+    <Route path='/allArticles' render={() => {
+        return <AllArticles
+          allArticles={this.state.allArticles}
+          user={this.state.currentUser}/>
+      }} />
 
 
-      <Route path='/' render={() => {
+    <Route path='/' render={() => {
           return <Home
             user={this.state.currentUser}
             />
         }} />
 
-      </Switch>
+    </Switch>
 
       <div className="ui yellow segments">
       </div>
